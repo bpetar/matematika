@@ -5,3 +5,4 @@ Website covering elementary school math through simple games. Idea is to help un
 
 Credits:
 Petar Bajic 
+Gorana Rakic-Bajic
