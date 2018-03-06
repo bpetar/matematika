@@ -40,10 +40,11 @@
 		var audio_pop = 0;
 		var touch = false;
 		var resultTimoutHandler = 0;
+		var errorTimeoutHandler = 0;
 		
 		audio_pop = document.createElement('audio');
 		var source_pop = document.createElement('source');
-		source_pop.src = '/matematika/media/sounds/pop.mp3';
+		source_pop.src = '../../../media/sounds/pop.mp3';
 		audio_pop.appendChild(source_pop);
 
 		var divContainer = document.getElementById('id-container-div');
@@ -54,7 +55,7 @@
 			console.log('huhu');
 			touch = true;
 			eliment = obj;
-			eliment.style.background = 'url("/matematika/media/images/bubble_burst.png")';
+			eliment.style.background = 'url("../../../media/images/bubble_burst.png")';
 			eliment.style.backgroundSize = '100%';
 			//playSoundPop();
 			audio_pop.volume = 1;
@@ -158,7 +159,7 @@
 
 		function checkResult()
 		{
-			console.log('checkResult huhu');
+			console.log('checkResult juhu');
 			if(result == 6)
 			{
 				if(!bravoShown)
@@ -166,17 +167,28 @@
 					alert('BRAVO PETRA!!!');
 					bravoShown = true;
 				}
+
+			}
+		}
+
+		function checkError()
+		{	
+			console.log('checkError');
+			if(result != 6)
+			{
+				alert('PROBAJ PONOVO :(');
 			}
 		}
 		
 		function goingDown(el)
 		{
 			if(!touch)
-			{
+			{	
+				if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
 				if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
 				console.log('hehe');
 				eliment = el;
-				eliment.style.background = 'url("/matematika/media/images/bubble_burst.png")';
+				eliment.style.background = 'url("../../../media/images/bubble_burst.png")';
 				eliment.style.backgroundSize = '100%';
 				//playSoundPop();
 				audio_pop.volume = 1;
@@ -190,6 +202,10 @@
 				resultTimoutHandler = setTimeout(function(){ 
 					checkResult();
 				}, 1200);
+				errorTimeoutHandler = setTimeout(function(){
+					checkError();
+				}, 5000);
+				
 			}
 			
 		}
@@ -203,17 +219,17 @@
 		Милош је пукнуо 5 балончића, помози Сари да пукне један више од Милоша.<br>
 		<br>
 
-		<div id='za-toliko-zad1-1' value=1 class='token' onmousedown='goingDown(this);' style='left:0px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad1-2' value=2 class='token' onmousedown='goingDown(this);' style='left:115px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad1-3' value=3 class='token' onmousedown='goingDown(this);' style='left:230px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad1-4' value=4 class='token' onmousedown='goingDown(this);' style='left:345px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad1-5' value=5 class='token' onmousedown='goingDown(this);' style='left:454px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-1' value=1 class='token' onmousedown='goingDown(this);' style='left:0px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-2' value=2 class='token' onmousedown='goingDown(this);' style='left:115px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-3' value=3 class='token' onmousedown='goingDown(this);' style='left:230px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-4' value=4 class='token' onmousedown='goingDown(this);' style='left:345px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-5' value=5 class='token' onmousedown='goingDown(this);' style='left:454px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
 		
-		<div id='za-toliko-zad1-6' value=1 class='token' onmousedown='goingDown(this);' style='left:0px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad1-7' value=2 class='token' onmousedown='goingDown(this);' style='left:115px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad1-8' value=3 class='token' onmousedown='goingDown(this);' style='left:230px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad1-9' value=4 class='token' onmousedown='goingDown(this);' style='left:345px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad1-10' value=5 class='token' onmousedown='goingDown(this);' style='left:454px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-6' value=1 class='token' onmousedown='goingDown(this);' style='left:0px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-7' value=2 class='token' onmousedown='goingDown(this);' style='left:115px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-8' value=3 class='token' onmousedown='goingDown(this);' style='left:230px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-9' value=4 class='token' onmousedown='goingDown(this);' style='left:345px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-10' value=5 class='token' onmousedown='goingDown(this);' style='left:454px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%;'></div>
 		
 	</div>
 		
