@@ -6,3 +6,5 @@ math todo
 - make first game
 - make language internationalization
 - make screen orientation
+
+- nis russion translation
