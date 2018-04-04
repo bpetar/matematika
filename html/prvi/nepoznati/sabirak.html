@@ -2,20 +2,39 @@
 	<head>
 		<title>Непознати сабирак</title>
 		<style>
-			body { 
-				margin: 0; 
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 128%;
+		body { 
+				background: url(../../../media/images/07.png) no-repeat center center fixed; background-position-y: bottom 140px; background-size: 35%
 			}
-			
+			.buttonShape {
+					margin: 50px;
+					width: 300px;
+				}
+				button:disabled,
+				button[disabled]{
+  				border: 1px solid #999999;
+  				background-color: #cccccc;
+  				color: #666666;
+				}
+				.nazad {
+					position: absolute;
+					margin-left: 915px
+				}
 		</style>
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="../../../media/jquery/jquery-3.3.1.min.js"></script>
+		<script src="../../../media/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../../../media/bootstrap-3.3.7/css/bootstrap.min.css">
 	</head>
 	<body>
-	
-		<br>
-		<a href="nepoznati_sabirak_1.html">Задатак 1: Шаргарепе</a><br>
-		<a href="nepoznati_sabirak_2.html">Задатак 2: Јабуке</a><br>
-		<br>
+		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 80px; background-color: lightblue; opacity:0.7">НЕПОЗНАТИ САБИРАК</center></div>
+		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 45px; background-color: lightblue; opacity:0.7">Откриј непознат број</center></div>	
+		<div class="row" style="margin-top: 600px">
+		<div class="col-md-3" style="width: 430px;"></div>
+		<div class="col-md-3"><a href="nepoznati_sabirak_1.html"  style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Шаргарепе</a></div>
+		<div class="col-md-3" style="width: 100px;"></div>
+		<div class="col-md-3"><a href="nepoznati_sabirak_2.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Јабуке</a></div>
+		<div class="row" style="height: 75px; background-color: pink;  opacity:0.7; position: fixed; bottom: 0; width: 110%"><a href="../prvi.html" type="button" class="btn btn-primary btn-lg nazad" role="button" style="margin-top: 20px">Назад</a>
+		</div>
 	</body>
 </html>

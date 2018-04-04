@@ -6,11 +6,8 @@
         <script src="../../../media/jquery/jquery-3.3.1.min.js"></script>
         <style>
             body { 
-                margin: 0; 
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 128%;
+                background: url(../../../media/images/nebo.jpg) no-repeat center center fixed; background-size: cover; 
             }
-            
             .c_container_div
             {
                 //border: 2px solid green;
@@ -447,9 +444,8 @@ function calcSpeed(prev, next) {
         </script>
     </head>
         <body onload='init();' >
-
-        <div id="id-container4-div" class="c_container_div" style="">
-        <br>Пера је уловио пет црвених и пет плавих балона. Улови један црвени мање од њега и један плави више.</br>
+        <div>
+        <br><div id='id-container4-div' class="c_container_div" style="">Пера је уловио пет црвених и пет плавих балона. Улови један црвени мање од њега и један плави више</div><br>
         <div id='za-toliko-zad4-1' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
         <div id='za-toliko-zad4-2' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:120px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
         <div id='za-toliko-zad4-3' value=2 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:120px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
@@ -471,14 +467,11 @@ function calcSpeed(prev, next) {
         <div id='za-toliko-zad4-19' value=2 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
         <div id='za-toliko-zad4-20' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
         </div> 
-    <div>
-        <id="id-container-div-result" class="container-result" style="color: blue;">
-        Пукнуто плавих: <span id="id-container-span-result-blue">0</span> 
-        <id="id-container-div-result" class="container-result" style="color: red; float: right;">
-        Пукнуто црвених: <span id="id-container-span-result-red">0</span >
-    </div>
-    <div id="id-container4.1-div" class="c_container_div"">
-    <center><a href="za_toliko.html">Назад</a>&nbsp;&nbsp;&nbsp;<a href="./za_toliko_5.html">Поново</a> </center>
+        <div>
+            <id="id-container-div-result" class="container-result" style="color: blue;">Пукнуто плавих: <span id="id-container-span-result-blue">0</span>
+            <id="id-container-div-result" class="container-result" style="color: red; float: right;">Пукнуто црвених: <span id="id-container-span-result-red">0</span >
+        </div>
+    <div id="id-container4.1-div" class="c_container_div"><center><a href="za_toliko.html">Назад</a>&nbsp;&nbsp;&nbsp;<a href="./za_toliko_5.html">Поново</a> </center>
     </div>
     </body>
 </html>    

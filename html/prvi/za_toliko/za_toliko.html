@@ -4,11 +4,18 @@
 		<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 		<style>
 			body { 
-				background: url(../../../media/images/3061.png) no-repeat center center fixed; background-position-y: bottom 75px; background-size: contain
+				background: url(../../../media/images/3061.png) no-repeat center center fixed; background-position-y: bottom 0px; background-size: contain
 			}
 			.buttonShape {
-					margin:50px;
-					opacity:0.8
+					margin: 50px;
+					opacity: 0.8;
+					width: 300px
+				}
+				button:disabled,
+				button[disabled]{
+  				border: 1px solid #999999;
+  				background-color: #cccccc;
+  				color: #666666;
 				}
 		</style>
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
@@ -18,16 +25,17 @@
 		<link rel="stylesheet" href="../../../media/bootstrap-3.3.7/css/bootstrap.min.css">
 	</head>
 	<body>
-		<div class="row" style="padding-top:10px"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 80px; background-color: red; opacity:0.7">ЗА ТОЛИКО ВЕЋИ/МАЊИ БРОЈ</center></div>
-		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 45px; background-color: red; opacity:0.7">Научи да препознаш за колико се један број разликује од другог</center></div>
+		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 80px; background-color: lightblue; opacity:0.7">ЗА ТОЛИКО ВЕЋИ/МАЊИ БРОЈ</center></div>
+		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 45px; background-color: lightblue; opacity:0.7">Научи да препознаш за колико се један број разликује од другог</center></div>
 		<div class="row" style="height: 670px;">
 		<div class="col-md-1" style="width: 100px;"></div>
-		<div class="col-md-2"><a href="za_toliko_1.html" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Задатак1: Балончићи1</a></div>
-		<div class="col-md-2"><a href="za_toliko_2.html" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Задатак2: Балончићи2</a></div>
-		<div class="col-md-2"><a href="za_toliko_4.html" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Задатак3: Балончићи3</a></div>
-		<div class="col-md-2"><a href="za_toliko_5.html" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Задатак4: Балончићи4</a></div>
-		<div class="col-md-2"><a href="za_toliko_3.html" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Задатак5: Оловке</a></div>
+		<div class="col-md-2"><a href="za_toliko_1.html"  style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Задатак1: Балончићи1</a></div>
+		<div class="col-md-2"><a href="za_toliko_2.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Задатак2: Балончићи2</a></div>
+		<div class="col-md-2"><a href="za_toliko_4.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Задатак3: Балончићи3</a></div>
+		<div class="col-md-2"><a href="za_toliko_5.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Задатак4: Балончићи4</a></div>
+		<div class="col-md-2"><a href="za_toliko_3.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Задатак5: Оловке</a></div>
 		</div>
-		<div class="row"><center><a href="../../../html/prvi/prvi.html" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Назад</a></center></div>
+		<div class="row" style="height: 75px; background-color: pink;  opacity:0.7; position: fixed; bottom: 0; width: 110%"><center><a href="../prvi.html" type="button" class="btn btn-primary btn-lg" role="button" style="margin-top: 20px">Назад</a></center>
+		</div>
 	</body>
 </html>

@@ -4,7 +4,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 		<style>
 			body {
-				   background: url(../../../media/images/279.png) no-repeat; background-size: contain; background-position-x: 595px; background-position-y: 380px;
+				   background: url(../../../media/images/279.png) no-repeat; background-size: contain; background-position-x: 850px; background-position-y: 380px;
 				   /*background picture Created by Iconicbestiary - Freepik.com*/
 				  }
 			.collShape {
@@ -22,17 +22,23 @@
     				-moz-osx-font-smoothing: grayscale;
     				transition-duration: 0.3s;
     				transition-property: transform;
+    				text-decoration: none;
 						}
 
 			.hvr-grow:hover,.hvr-grow:focus,.hvr-grow:active 
 						{
-    					transform: scale(1.2);
+    					transform: scale(1);
     					background-color:pink;
-    					cursor: grab;
-    					}
-									
+    					cursor: pointer;
+    					text-decoration: none;
+    					}		
+    					a.disabled {
+  							color: gray;
+  							pointer-events: none;
+									}
 			
 		</style>
+		
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="../../../media/jquery/jquery-3.3.1.min.js"></script>
@@ -40,31 +46,32 @@
 		<link rel="stylesheet" href="../../../media/bootstrap-3.3.7/css/bootstrap.min.css">
 		
 	</head>
+	
 	<body>
-		<div class="row" style="padding-top:10px"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 100px; background-color: blue; opacity:0.7">ПРВИ РАЗРЕД</center>
-		<div class="row" style="padding-bottom: 200px">
-		<div class="col-md-6"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 50px; /*background-color: blue*/; opacity:0.7;">ПРВО ПОЛУГОДИШТЕ</center></div>
-		<div class="col-md-6"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 50px; /*background-color: blue*/; opacity:0.7;">ДРУГО ПОЛУГОДИШТЕ</center></div>
-		<div class="row"  style="height: 500px;">
+		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 100px; background-color: lightblue; opacity:0.7">ПРВИ РАЗРЕД</center></div>
+		<div class="row"  style="height: 650px;">
 			<div class="col-md-1"></div>
 			<div class="col-md-4">
-				<div class="row collShape"><center class="natpis hvr-grow"><a href="">Положај предмета</a></center></div>
-				<div class="row collShape"><center class="natpis hvr-grow"><a href="">Облици</a></center></div>
-				<div class="row collShape"><center class="natpis hvr-grow"><a href="">Линије</a></center></div>
-				<div class="row collShape"><center class="natpis hvr-grow"><a href="">Скупови</a></center></div>
-				<div class="row collShape"><center class="natpis hvr-grow"><a href="">Бројеви</a></center></div>
+				<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 50px; opacity:0.7;">ПРВО ПОЛУГОДИШТЕ</center></div>
+				<div class="row collShape"><center class="natpis"><a href="" style="text-decoration: none; display: block" class="disabled">Положај предмета</a></center></div>
+				<div class="row collShape"><center class="natpis"><a href="" style="text-decoration: none; display: block" class="disabled">Облици</a></center></div>
+				<div class="row collShape"><center class="natpis"><a href="" style="text-decoration: none; display: block" class="disabled">Линије</a></center></div>
+				<div class="row collShape"><center class="natpis"><a href="" style="text-decoration: none; display: block" class="disabled">Скупови</a></center></div>
+				<div class="row collShape"><center class="natpis"><a href="" style="text-decoration: none; display: block" class="disabled">Бројеви</a></center></div>
 			</div>
 			<div class="col-md-2"></div>
 			<div class="col-md-4">
-				<div class="row collShape"><center class="natpis hvr-grow"><a href="../../../html/prvi/novac/novac.html">Новац</a></center></div>
-				<div class="row collShape"><center class="natpis hvr-grow"><a href="../../../html/prvi/za_toliko/proba.html">Разлика</a></center></div>
-				<div class="row collShape"><center class="natpis hvr-grow"><a href="../../../html/prvi/nepoznati/sabirak.html">Откривамо непознат број</a></center></div>
+				<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 50px; opacity:0.7;">ДРУГО ПОЛУГОДИШТЕ</center></div>
+				<div class="row collShape"><center class="natpis hvr-grow"><a href="../../../html/prvi/novac/novac.html" style="text-decoration: none; display: block">Новац</a></center></div>
+				<div class="row collShape"><center class="natpis hvr-grow"><a href="../../../html/prvi/za_toliko/za_toliko.html" style="text-decoration: none; display: block">Разлика</a></center></div>
+				<div class="row collShape"><center class="natpis hvr-grow"><a href="../../../html/prvi/nepoznati/sabirak.html" style="text-decoration: none; display: block">Откривамо непознат број</a></center></div>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 		<div class="row">
 			<div class="col-md-2"></div>
-			<div class="col-md-2""><a href="../../../index.html" type="button" class="btn btn-primary btn-lg buttonShape" role="button" style="float:left; position:fixed; bottom:0;">Назад</a></div>
+			<div class="row" style="height: 73px; background-color: pink;  opacity:0.7; position: fixed; bottom: 0; width: 110%"><center><a href="../../../index.html" type="button" class="btn btn-primary btn-lg" role="button" style="margin-top: 20px">Назад</a></center>
+		</div>
 		</div>
 
 

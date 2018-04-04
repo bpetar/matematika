@@ -1,23 +1,43 @@
 <html>
 	<head>
 		<title>Новац</title>
+		<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 		<style>
 			body { 
-				margin: 0; 
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 128%;
+				background: url(../../../media/images/dinar.jpg) no-repeat center center fixed; background-position-y: bottom 140px;  background-position-x: 620px; background-size: 35%
 			}
-			
+			.buttonShape {
+					margin: 50px;
+					width: 300px;
+				}
+				button:disabled,
+				button[disabled]{
+  				border: 1px solid #999999;
+  				background-color: #cccccc;
+  				color: #666666;
+				}
+				.nazad {
+					position: absolute;
+					margin-left: 910px
+				}
 		</style>
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="../../../media/jquery/jquery-3.3.1.min.js"></script>
+		<script src="../../../media/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../../../media/bootstrap-3.3.7/css/bootstrap.min.css">
 	</head>
 	<body>
-	
-		<br>
-		<a href="novac_1.html">Задатак 1: Поређај кованице</a><br>
-		<a href="novac_2.html">Задатак 2: Велике кованице</a><br>
-		<a href="novac_3.html">Задатак 3: Сабери кованице</a><br>
-		<a href="novac_4.html">Задатак 4: Исти џепарац</a><br>
-		<br>
+		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 80px; background-color: lightblue; opacity:0.7">Н О В А Ц</center></div>
+		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 45px; background-color: lightblue; opacity:0.7">Упознај наше кованице</center></div>
+		<div class="row" style="margin-top: 600px">
+		<div class="col-md-1" style="width: 270px;"></div>
+		<div class="col-md-2"><a href="novac_1.html"  style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Поређај кованице</a></div>
+		<div class="col-md-2"><a href="novac_2.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Велике кованице</a></div>
+		<div class="col-md-2"><a href="novac_3.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Сабери кованице</a></div>
+		<div class="col-md-2"><a href="novac_4.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Исти џепарац</a></div>
+	</div>
+		<div class="row" style="height: 75px; background-color: pink;  opacity:0.7; position: fixed; bottom: 0; width: 110%"><a href="../prvi.html" type="button" class="btn btn-primary btn-lg nazad" role="button" style="margin-top: 20px">Назад</a>
+		</div>
 	</body>
 </html>
