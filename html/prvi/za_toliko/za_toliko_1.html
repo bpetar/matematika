@@ -1,55 +1,58 @@
 <html>
-	<head>
-		<title>Пукни балончиће</title>
-		<meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html" charset="iso-8859-5">
-  		<script src="../../../media/jquery/jquery-3.3.1.min.js"></script>
-  		<link rel="stylesheet" href="../../../media/bootstrap-3.3.7/css/bootstrap.min.css">
- 		<script src="../../../media/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-		<style>
-			body { 
-			}
-			
-			.c_container_div
-			{
-				
-			}
-			
-			.token { 
-				width:100px;
-				height:100px;
-				position: absolute;
-				margin:7px;
-				cursor:pointer;
-				-webkit-tap-highlight-color:transparent;
-			}
-		</style>
-		<script>
-		var eliment = 0;
-		var coinsaremoved = false;
-		var ELEMENT_WIDTH = 100;
-		var bravoShown = false;
-		var result = 0;
-		var bubbles = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
-		var audio_pop = 0;
-		var touch = false;
-		var resultTimoutHandler = 0;
-		var errorTimeoutHandler = 0;
-		
-		audio_pop = document.createElement('audio');
-		var source_pop = document.createElement('source');
-		source_pop.src = '../../../media/sounds/pop.mp3';
-		audio_pop.appendChild(source_pop);
+<head>
+	<title>Пукни балончиће</title>
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+	<meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html" charset="iso-8859-5">
+	<script src="../../../js/jquery/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="../../../js/bootstrap-3.3.7/css/bootstrap.min.css">
+	<script src="../../../js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<style>
+	body { 
+		background: url(../../../media/images/poz_baloni1.png) no-repeat center center fixed; background-size: cover; 
+	}
 
-		var divContainer = document.getElementById('id-container-div');
-		
-		function touchStartHandler(event) {
-			var obj = this;
-			if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
-			console.log('huhu');
-			touch = true;
-			eliment = obj;
-			eliment.style.background = 'url("../../../media/images/bubble_burst.png")';
-			eliment.style.backgroundSize = '100%';
+	.c_container_div
+	{
+
+	}
+
+	.token { 
+		width:100px;
+		height:100px;
+		position: absolute;
+		margin:7px;
+		cursor:pointer;
+		-webkit-tap-highlight-color:transparent;
+	}
+</style>
+<script>
+	var eliment = 0;
+	var coinsaremoved = false;
+	var ELEMENT_WIDTH = 100;
+	var bravoShown = false;
+	var result = 0;
+	var bubbles = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
+	var audio_pop = 0;
+	var touch = false;
+	var resultTimoutHandler = 0;
+	var errorTimeoutHandler = 0;
+	var offset = 30;
+	
+
+	audio_pop = document.createElement('audio');
+	var source_pop = document.createElement('source');
+	source_pop.src = '../../../media/sounds/pop.mp3';
+	audio_pop.appendChild(source_pop);
+
+	var divContainer = document.getElementById('id-container-div');
+	function touchStartHandler(event) {
+		var obj = this;
+		if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+		console.log('huhu');
+		touch = true;
+		eliment = obj;
+		eliment.style.background = 'url("../../../media/images/zvezdice.png")';
+		eliment.style.backgroundSize = '100%';
 			//playSoundPop();
 			audio_pop.volume = 1;
 			audio_pop.currentTime = 0;
@@ -62,103 +65,270 @@
 			resultTimoutHandler = setTimeout(function(){ 
 				checkResult();
 			}, 1200);
-
 		}
 
-		function onWindowResize()
-		{
-			
+		function onWindowResize() {
 
-		}
-		
-		function init()
-		{
-			audio_pop.volume = 0.001;
-			audio_pop.play();
-			window.addEventListener( 'resize', onWindowResize, false );
-			divContainer = document.getElementById('id-container-div');
-			console.log(window.innerWidth);
-			//divContainer.style.height = (window.innerHeight-40) + 'px';
-			if(window.innerWidth < 600)
-			{
-				//adjust game to less screen?
-				divContainer.style.width = window.innerWidth + 'px';
-				//alert("screen width too small, try landscape");
-				ELEMENT_WIDTH = window.innerWidth/6;
-				
+			$(document).ready(function(){
+				console.log('strana ucitana');
+				var gameContainer = document.getElementById('id-game-container');
+				var divHeader = document.getElementById('id-div-header-text');
+				var visinaProzora = window.innerHeight;
+				var visinaHedera = divHeader.offsetHeight;
+				var rezultatvisina = visinaProzora - visinaHedera - 90;
+
+				gameContainer.style.height = rezultatvisina + 'px';
+			});
+
+
+			var gameCol8 = document.getElementById('id-col-osam');
+			var sirinaProzora8 = gameCol8.offsetWidth;
+			console.log(sirinaProzora8);
+
+			if(sirinaProzora8 > 600)
+			{	
+				offset = (gameContainer.offsetWidth - 5*(ELEMENT_WIDTH+7))/2;
 				elements = document.querySelectorAll('.token');
 				for(var i=0; i<5; i++){
 					elements[i].style.width = ELEMENT_WIDTH + "px";
 					elements[i].style.height = ELEMENT_WIDTH + "px";
-					elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+					elements[i].style.left = (((ELEMENT_WIDTH+10)*i)+ offset) + "px";
 					elements[i].style.top = (120) + "px";
 				}
 				for(var i=5; i<10; i++){
 					elements[i].style.width = ELEMENT_WIDTH + "px";
 					elements[i].style.height = ELEMENT_WIDTH + "px";
-					elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
+					elements[i].style.left = (((ELEMENT_WIDTH+10)*(i-5)+offset) +'px');
 					elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
 				}
-
 			}
-			
-			var obj1 = document.getElementById('za-toliko-zad1-1');
-			var obj2 = document.getElementById('za-toliko-zad1-2');
-			var obj3 = document.getElementById('za-toliko-zad1-3');
-			var obj4 = document.getElementById('za-toliko-zad1-4');
-			var obj5 = document.getElementById('za-toliko-zad1-5');
-			var obj6 = document.getElementById('za-toliko-zad1-6');
-			var obj7 = document.getElementById('za-toliko-zad1-7');
-			var obj8 = document.getElementById('za-toliko-zad1-8');
-			var obj9 = document.getElementById('za-toliko-zad1-9');
-			var obj10 = document.getElementById('za-toliko-zad1-10');
-			
-			obj1.addEventListener('touchstart', touchStartHandler, false);
-			obj2.addEventListener('touchstart', touchStartHandler, false);
-			obj3.addEventListener('touchstart', touchStartHandler, false);
-			obj4.addEventListener('touchstart', touchStartHandler, false);
-			obj5.addEventListener('touchstart', touchStartHandler, false);
 
-			obj6.addEventListener('touchstart', touchStartHandler, false);
-			obj7.addEventListener('touchstart', touchStartHandler, false);
-			obj8.addEventListener('touchstart', touchStartHandler, false);
-			obj9.addEventListener('touchstart', touchStartHandler, false);
-			obj10.addEventListener('touchstart', touchStartHandler, false);
-		}
+			if(sirinaProzora8 < 600)
+				{ if(sirinaProzora8 > 470) 
 
-		function checkResult()
-		{
-			console.log('checkResult juhu');
-			if(result == 6)
-			{
-				if(!bravoShown)
-				{
-					alert('Браво Петра!!!');
-					bravoShown = true;
+					{	
+						offset = (gameContainer.offsetWidth - 4*(ELEMENT_WIDTH+7))/2;
+						elements = document.querySelectorAll('.token');
+						for(var i=0; i<4; i++){
+							elements[i].style.width = ELEMENT_WIDTH + "px";
+							elements[i].style.height = ELEMENT_WIDTH + "px";
+							elements[i].style.left = (((ELEMENT_WIDTH+10)*i)+offset) + "px";
+							elements[i].style.top = (120) + "px";
+						}
+						for(var i=4; i<8; i++){
+							elements[i].style.width = ELEMENT_WIDTH + "px";
+							elements[i].style.height = ELEMENT_WIDTH + "px";
+							elements[i].style.left = (((ELEMENT_WIDTH+10)*(i-4))+offset) + "px";
+							elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+						}
+						for(var i=8; i<10; i++){
+							elements[i].style.width = ELEMENT_WIDTH + "px";
+							elements[i].style.height = ELEMENT_WIDTH + "px";
+							var rezultat = (((ELEMENT_WIDTH+10)*(i-8)+(ELEMENT_WIDTH))+offset);
+							elements[i].style.left = rezultat + 'px';
+							elements[i].style.top = (ELEMENT_WIDTH+240) + "px";
+						}
+
+					}
+					else 
+
+						if(sirinaProzora8 < 470) 
+						{	
+							offset = (gameContainer.offsetWidth - 3*(ELEMENT_WIDTH+7))/2;
+							elements = document.querySelectorAll('.token');
+							for(var i=0; i<3; i++){
+								elements[i].style.width = ELEMENT_WIDTH + "px";
+								elements[i].style.height = ELEMENT_WIDTH + "px";
+								elements[i].style.left = (((ELEMENT_WIDTH+10)*i)+offset) + "px";
+								elements[i].style.top = (120) + "px";
+							}
+							for(var i=3; i<6; i++){
+								elements[i].style.width = ELEMENT_WIDTH + "px";
+								elements[i].style.height = ELEMENT_WIDTH + "px";
+								elements[i].style.left = (((ELEMENT_WIDTH+10)*(i-3))+offset) + "px";
+								elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+							}
+							for(var i=6; i<9; i++){
+								elements[i].style.width = ELEMENT_WIDTH + "px";
+								elements[i].style.height = ELEMENT_WIDTH + "px";
+								elements[i].style.left = (((ELEMENT_WIDTH+10)*(i-6))+offset) + "px";
+								elements[i].style.top = (ELEMENT_WIDTH+240) + "px";
+							}
+							for(var i=9; i<10; i++){
+								elements[i].style.width = ELEMENT_WIDTH + "px";
+								elements[i].style.height = ELEMENT_WIDTH + "px";
+								elements[i].style.left = (((ELEMENT_WIDTH))+offset) + "px";
+								elements[i].style.top = (ELEMENT_WIDTH+350) + "px";
+							}
+
+
+						}
+
+					}
 				}
+				$(document).ready(function(){
+					console.log('strana ucitana');
+					gameContainer = document.getElementById('id-game-container');
+					var divHeader = document.getElementById('id-div-header-text');
+					var visinaProzora = window.innerHeight;
+					var visinaHedera = divHeader.offsetHeight;
+					var rezultatvisina = visinaProzora - visinaHedera - 90;
 
-			}
-		}
+					gameContainer.style.height = rezultatvisina + 'px';
 
-		function checkError()
-		{	
-			console.log('checkError');
-			if(result != 6)
-			{
-				alert('Пробај поново :(');
-			}
-		}
-		
-		function goingDown(el)
-		{
-			if(!touch)
-			{	
-				if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
-				if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
-				console.log('hehe');
-				eliment = el;
-				eliment.style.background = 'url("../../../media/images/bubble_burst.png")';
-				eliment.style.backgroundSize = '100%';
+					init();
+				});
+
+
+				function init()
+				{
+					audio_pop.volume = 0.001;
+					audio_pop.play();
+					window.addEventListener( 'resize', onWindowResize, false );
+
+					var gameCol8 = document.getElementById('id-col-osam');
+					var sirinaProzora8 = gameCol8.offsetWidth;
+					console.log(sirinaProzora8);
+
+					offset = (gameContainer.offsetWidth - 5*(ELEMENT_WIDTH+7))/2;
+
+					if(sirinaProzora8 > 600)
+					{
+						elements = document.querySelectorAll('.token');
+						for(var i=0; i<5; i++){
+							elements[i].style.width = ELEMENT_WIDTH + "px";
+							elements[i].style.height = ELEMENT_WIDTH + "px";
+							elements[i].style.left = (((ELEMENT_WIDTH+10)*i)+ offset) + "px";
+							elements[i].style.top = (120) + "px";
+						}
+						for(var i=5; i<10; i++){
+							elements[i].style.width = ELEMENT_WIDTH + "px";
+							elements[i].style.height = ELEMENT_WIDTH + "px";
+							elements[i].style.left = (((ELEMENT_WIDTH+10)*(i-5)+offset) +'px');
+							elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+						}
+					}
+
+					if(sirinaProzora8 < 600)
+						{ if(sirinaProzora8 > 470) 
+							
+
+							{   
+								offset = (gameContainer.offsetWidth - 4*(ELEMENT_WIDTH+7))/2;
+								elements = document.querySelectorAll('.token');
+								for(var i=0; i<4; i++){
+									elements[i].style.width = ELEMENT_WIDTH + "px";
+									elements[i].style.height = ELEMENT_WIDTH + "px";
+									elements[i].style.left = (((ELEMENT_WIDTH+10)*i)+offset) + "px";
+									elements[i].style.top = (120) + "px";
+								}
+								for(var i=4; i<8; i++){
+									elements[i].style.width = ELEMENT_WIDTH + "px";
+									elements[i].style.height = ELEMENT_WIDTH + "px";
+									elements[i].style.left = (((ELEMENT_WIDTH+10)*(i-4))+offset) + "px";
+									elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+								}
+								for(var i=8; i<10; i++){
+									elements[i].style.width = ELEMENT_WIDTH + "px";
+									elements[i].style.height = ELEMENT_WIDTH + "px";
+									var rezultat = (((ELEMENT_WIDTH+10)*(i-8)+(ELEMENT_WIDTH))+offset);
+									elements[i].style.left = rezultat + 'px';
+									elements[i].style.top = (ELEMENT_WIDTH+240) + "px";
+								}
+
+							}
+
+							if(sirinaProzora8 < 470) 
+
+							{	
+								offset = (gameContainer.offsetWidth - 3*(ELEMENT_WIDTH+7))/2;
+								elements = document.querySelectorAll('.token');
+								for(var i=0; i<3; i++){
+									elements[i].style.width = ELEMENT_WIDTH + "px";
+									elements[i].style.height = ELEMENT_WIDTH + "px";
+									elements[i].style.left = (((ELEMENT_WIDTH+10)*i)+offset) + "px";
+									elements[i].style.top = (120) + "px";
+								}
+								for(var i=3; i<6; i++){
+									elements[i].style.width = ELEMENT_WIDTH + "px";
+									elements[i].style.height = ELEMENT_WIDTH + "px";
+									elements[i].style.left = (((ELEMENT_WIDTH+10)*(i-3))+offset) + "px";
+									elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+								}
+								for(var i=6; i<9; i++){
+									elements[i].style.width = ELEMENT_WIDTH + "px";
+									elements[i].style.height = ELEMENT_WIDTH + "px";
+									elements[i].style.left = (((ELEMENT_WIDTH+10)*(i-6))+offset) + "px";
+									elements[i].style.top = (ELEMENT_WIDTH+240) + "px";
+								}
+								for(var i=9; i<10; i++){
+									elements[i].style.width = ELEMENT_WIDTH + "px";
+									elements[i].style.height = ELEMENT_WIDTH + "px";
+									elements[i].style.left = (((ELEMENT_WIDTH))+offset) + "px";
+									elements[i].style.top = (ELEMENT_WIDTH+350) + "px";
+								}
+
+
+							}
+
+						}
+
+						var obj1 = document.getElementById('za-toliko-zad1-1');
+						var obj2 = document.getElementById('za-toliko-zad1-2');
+						var obj3 = document.getElementById('za-toliko-zad1-3');
+						var obj4 = document.getElementById('za-toliko-zad1-4');
+						var obj5 = document.getElementById('za-toliko-zad1-5');
+						var obj6 = document.getElementById('za-toliko-zad1-6');
+						var obj7 = document.getElementById('za-toliko-zad1-7');
+						var obj8 = document.getElementById('za-toliko-zad1-8');
+						var obj9 = document.getElementById('za-toliko-zad1-9');
+						var obj10 = document.getElementById('za-toliko-zad1-10');
+
+						obj1.addEventListener('touchstart', touchStartHandler, false);
+						obj2.addEventListener('touchstart', touchStartHandler, false);
+						obj3.addEventListener('touchstart', touchStartHandler, false);
+						obj4.addEventListener('touchstart', touchStartHandler, false);
+						obj5.addEventListener('touchstart', touchStartHandler, false);
+
+						obj6.addEventListener('touchstart', touchStartHandler, false);
+						obj7.addEventListener('touchstart', touchStartHandler, false);
+						obj8.addEventListener('touchstart', touchStartHandler, false);
+						obj9.addEventListener('touchstart', touchStartHandler, false);
+						obj10.addEventListener('touchstart', touchStartHandler, false);
+					}
+					function checkResult()
+					{
+						console.log('checkResult juhu');
+						if(result == 6)
+						{
+							if(!bravoShown)
+							{
+								alert('Браво Петра');
+								bravoShown = true;
+							}
+
+						}
+					}
+
+					function checkError()
+					{	
+						console.log('checkError');
+						if(result != 6)
+						{
+							alert('Пробај поново');
+						}
+					}
+
+					function goingDown(el)
+					{
+						if(!touch)
+						{	
+							if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
+							if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+							console.log('hehe');
+							eliment = el;
+							eliment.style.background = 'url("../../../media/images/zvezdice.png")';
+							eliment.style.backgroundSize = '100%';
 				//playSoundPop();
 				audio_pop.volume = 1;
 				audio_pop.currentTime = 0;
@@ -178,31 +348,35 @@
 			}
 			
 		}
+
 		
-		</script>
-	</head>
-	<body onload='init();' >
+	</script>
+</head>
+<body>
+	<div class="container-fluid"  id="id-container-div">
+		<div class="row" id="id-div-header-text"><center style="font-color:black;font-family:'Amatic SC'; background-color: lightblue; font-size: 50px; font-weight: bold; padding:10px">Милош је пукнуо пет балончића, помогни Сари да пукне један више од Милоша</center></div>
+
+		<div class="row">
+			<div class="col-md-2" id="id-col-2a"></div>
+			<div class="col-md-8" id="id-col-osam">
+				<div id="id-game-container" style="max-width: 600px; margin: 0 auto; position: relative;">
+					<div id='za-toliko-zad1-1' value=1 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+					<div id='za-toliko-zad1-2' value=2 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+					<div id='za-toliko-zad1-3' value=3 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+					<div id='za-toliko-zad1-4' value=4 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+					<div id='za-toliko-zad1-5' value=5 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+
+					<div id='za-toliko-zad1-6' value=1 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+					<div id='za-toliko-zad1-7' value=2 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+					<div id='za-toliko-zad1-8' value=3 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+					<div id='za-toliko-zad1-9' value=4 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+					<div id='za-toliko-zad1-10' value=5 class='token' onmousedown='goingDown(this);' style='background: url("../../../media/images/redbubble.png"); background-size: 100%'></div>
+				</div>
+			</div>
+			<div class="col-md-2" id="id-col-2b"></div>
+		</div>
+		<div class="row" style="background-color: pink; height: 90px; opacity: 0.8"><center><br><a href="za_toliko.html" type="button" class="btn btn-primary btn-lg" role="button" style="width: 150px; margin-right:10px; margin-bottom:15px">Назад</a><a href="za_toliko_1.html" type="button" class="btn btn-primary btn-lg" role="button" style="width: 150px; margin-left:10px; margin-bottom:15px">Поново</a></br></center></div>
+	</div>	
 	
-<div class="row"><center style="font-color:black; background-color: lightblue; height: 125px; font-size: 25px; font-weight: bold"><br>Милош је пукнуо 5 балончића, помози Сари да пукне један више од Милоша</br></center></div>
-		
-<div class="row" id="id-container-div">
-	<div class="col-md-2" style="background-color:red; "></div>
-	<div class="col-md-8" id="id-container-div"  style="">
-		<div id='za-toliko-zad1-1' value=1 class='token' onmousedown='goingDown(this);' style='left:0px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-		<div id='za-toliko-zad1-2' value=2 class='token' onmousedown='goingDown(this);' style='left:115px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-		<div id='za-toliko-zad1-3' value=3 class='token' onmousedown='goingDown(this);' style='left:230px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-		<div id='za-toliko-zad1-4' value=4 class='token' onmousedown='goingDown(this);' style='left:345px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-		<div id='za-toliko-zad1-5' value=5 class='token' onmousedown='goingDown(this);' style='left:454px; top:120px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-		
-		<div id='za-toliko-zad1-6' value=1 class='token' onmousedown='goingDown(this);' style='left:0px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-		<div id='za-toliko-zad1-7' value=2 class='token' onmousedown='goingDown(this);' style='left:115px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-		<div id='za-toliko-zad1-8' value=3 class='token' onmousedown='goingDown(this);' style='left:230px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-		<div id='za-toliko-zad1-9' value=4 class='token' onmousedown='goingDown(this);' style='left:345px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-		<div id='za-toliko-zad1-10' value=5 class='token' onmousedown='goingDown(this);' style='left:454px; top:230px; background: url("../../../media/images/bubble.png"); background-size: 100%'></div>
-	</div>
-		<div class="col-md-2" style="background-color:red;"></div>
-</div>
-	<div class="row" style="height: 125px; background-color: pink;"><center><a href="za_toliko.html" type="button" class="btn btn-primary btn-lg" role="button" style="margin-top: 20px; width: 150px; margin-right: :10px">назад</a><a href="za_toliko_1.html" type="button" class="btn btn-primary btn-lg" role="button" style="margin-top: 20px; width: 150px; margin-left: 10px">поново</a></center></div>
-	
-	</body>
+</body>
 </html>
