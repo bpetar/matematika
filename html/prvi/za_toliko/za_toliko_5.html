@@ -1,477 +1,594 @@
 <html>
-    <head>
-        <title>Пукни балончиће 5</title>
-        <meta name="viewport" content="width=device-width,user-scalable=no">
-        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
-        <script src="../../../media/jquery/jquery-3.3.1.min.js"></script>
-        <style>
-            body { 
-                background: url(../../../media/images/nebo.jpg) no-repeat center center fixed; background-size: cover; 
-            }
-            .c_container_div
-            {
-                //border: 2px solid green;
-                width: 600px;
-                margin: 0 auto;
-                //padding: 5px;
-                position: relative;
-            }
-            
-            .bubble { 
-                width:100px;
-                height:100px;
-                position:absolute;
-                margin:7px;
-                cursor:pointer;
-                -webkit-tap-highlight-color:transparent;
-                color: transparent;
-            }
-            
-            
-            .container-result {
-              position: relative;
-              font-size:35px;
-              font-weight:bold;
-              
-            }
-            
-        </style>
-        
-        
-        <script>
-            
-        var eliment = 0;
-        var coinsaremoved = false;
-        var ELEMENT_WIDTH = 100;
-        var bravoShown = false;
-        var result = 0;
-        var bubbles = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
-        var audio_pop = 0;
-        var touch = false;
-        var resultTimoutHandler = 0;
-        var errorTimeoutHandler = 0;
-        var totalBlueCount=10;
-        var totalRedCount=10;
+<head>
+  <title>Пукни балончиће 5</title>
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+  <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html" charset="iso-8859-5">
+  <script src="../../../js/jquery/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="../../../js/bootstrap-3.3.7/css/bootstrap.min.css">
+  <script src="../../../js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  body { 
+    background: url(../../../media/images/poz_baloni1.png) no-repeat center center fixed; background-size: cover; 
+  }
 
-        audio_pop = document.createElement('audio');
-        var source_pop = document.createElement('source');
-        source_pop.src = '../../../media/sounds/pop.mp3';
-        audio_pop.appendChild(source_pop); 
+  .bubble { 
+    width:100px;
+    height:100px;
+    position:absolute;
+    margin:7px;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
 
-        var divContainer4 = document.getElementById('id-container4-div');
-            
-            $(document).ready(function(){
+</style>
+
+
+<script>
+
+  var eliment = 0;
+  var coinsaremoved = false;
+  var ELEMENT_WIDTH = 100;
+  var bravoShown = false;
+  var result = 0;
+  var bubbles = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
+  var audio_pop = 0;
+  var touch = false;
+  var resultTimoutHandler = 0;
+  var errorTimeoutHandler = 0;
+  var totalBlueCount=10;
+  var totalRedCount=10;
+
+  audio_pop = document.createElement('audio');
+  var source_pop = document.createElement('source');
+  source_pop.src = '../../../media/sounds/pop.mp3';
+  audio_pop.appendChild(source_pop); 
+
+  var gameContainer = document.getElementById('id-game-container');
+
+  $(document).ready(function()
+  {
     animateDiv();
-    
-    });
 
-    function makeNewPosition() {
-    
+
+  });
+
+  function makeNewPosition() {
+
+
         // Get viewport dimensions (remove the dimension of the div)
-       var w = window.innerWidth-100;
-       var h = window.innerHeight-100;
-       var Z = $(window).width() - ($('#id-container4-div').offset().left + $('#id-container4-div').width());
-       
+        var w = window.innerWidth-100;
+        var h = $('#id-game-container').height();
+        var Z = $(window).width() - ($('#id-game-container').offset().left + $('#id-game-container').width());
+        console.log('Z='+ Z);
+
         var nh = Math.floor(Math.random() * h);
         var nw = Math.floor(Math.random() * w) - Z;
         
         return [nh,nw];
         
+      }
+
+      function animateDiv(){
+       var newq = makeNewPosition();
+       var newq2 = makeNewPosition();
+       var newq3 = makeNewPosition();
+       var newq4 = makeNewPosition();
+       var newq5 = makeNewPosition();
+       var newq6 = makeNewPosition();
+       var newq7 = makeNewPosition();
+       var newq8 = makeNewPosition();
+       var newq9 = makeNewPosition();
+       var newq10 = makeNewPosition();
+       var newq11 = makeNewPosition();
+       var newq12 = makeNewPosition();
+       var newq13 = makeNewPosition();
+       var newq14 = makeNewPosition();
+       var newq15 = makeNewPosition();
+       var newq16 = makeNewPosition();
+       var newq17 = makeNewPosition();
+       var newq18 = makeNewPosition();
+       var newq19 = makeNewPosition();
+       var newq20 = makeNewPosition();
+
+       var oldq = $('#za-toliko-zad4-1').offset();
+       var oldq2 = $('#za-toliko-zad4-2').offset();
+       var oldq3 = $('#za-toliko-zad4-3').offset();
+       var oldq4 = $('#za-toliko-zad4-4').offset();
+       var oldq5 = $('#za-toliko-zad4-5').offset();
+       var oldq6 = $('#za-toliko-zad4-6').offset();
+       var oldq7 = $('#za-toliko-zad4-7').offset();
+       var oldq8 = $('#za-toliko-zad4-8').offset();
+       var oldq9 = $('#za-toliko-zad4-9').offset();
+       var oldq10 = $('#za-toliko-zad4-10').offset();
+       var oldq11 = $('#za-toliko-zad4-11').offset();
+       var oldq12 = $('#za-toliko-zad4-12').offset();
+       var oldq13 = $('#za-toliko-zad4-13').offset();
+       var oldq14 = $('#za-toliko-zad4-14').offset();
+       var oldq15= $('#za-toliko-zad4-15').offset();
+       var oldq16 = $('#za-toliko-zad4-16').offset();
+       var oldq17 = $('#za-toliko-zad4-17').offset();
+       var oldq18 = $('#za-toliko-zad4-18').offset();
+       var oldq19 = $('#za-toliko-zad4-19').offset();
+       var oldq20 = $('#za-toliko-zad4-20').offset();
+
+
+       var speed = calcSpeed([oldq.top, oldq.left], newq);
+       var speed2 = calcSpeed([oldq2.top, oldq2.left], newq2);
+       var speed3 = calcSpeed([oldq3.top, oldq3.left], newq3);
+       var speed4 = calcSpeed([oldq4.top, oldq4.left], newq4);
+       var speed5 = calcSpeed([oldq5.top, oldq5.left], newq5);
+       var speed6 = calcSpeed([oldq6.top, oldq6.left], newq6);
+       var speed7 = calcSpeed([oldq7.top, oldq7.left], newq7);
+       var speed8 = calcSpeed([oldq8.top, oldq8.left], newq8);
+       var speed9 = calcSpeed([oldq9.top, oldq9.left], newq9);
+       var speed10 = calcSpeed([oldq10.top, oldq10.left], newq10);
+       var speed11 = calcSpeed([oldq11.top, oldq11.left], newq11);
+       var speed12 = calcSpeed([oldq12.top, oldq12.left], newq12);
+       var speed13 = calcSpeed([oldq13.top, oldq13.left], newq13);
+       var speed14 = calcSpeed([oldq14.top, oldq14.left], newq14);
+       var speed15 = calcSpeed([oldq15.top, oldq15.left], newq15);
+       var speed16 = calcSpeed([oldq16.top, oldq16.left], newq16);
+       var speed17 = calcSpeed([oldq17.top, oldq17.left], newq17);
+       var speed18 = calcSpeed([oldq18.top, oldq18.left], newq18);
+       var speed19 = calcSpeed([oldq19.top, oldq19.left], newq19);
+       var speed20 = calcSpeed([oldq20.top, oldq20.left], newq20);
+
+
+       $('#za-toliko-zad4-1').animate({ top: newq[0], left: newq[1] }, speed, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-2').animate({ top: newq2[0], left: newq2[1] }, speed2, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-3').animate({ top: newq3[0], left: newq3[1] }, speed3, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-4').animate({ top: newq4[0], left: newq4[1] }, speed4, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-5').animate({ top: newq5[0], left: newq5[1] }, speed5, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-6').animate({ top: newq6[0], left: newq6[1] }, speed6, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-7').animate({ top: newq7[0], left: newq7[1] }, speed7, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-8').animate({ top: newq8[0], left: newq8[1] }, speed8, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-9').animate({ top: newq9[0], left: newq9[1] }, speed9, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-10').animate({ top: newq10[0], left: newq10[1] }, speed10, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-11').animate({ top: newq11[0], left: newq11[1] }, speed11, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-12').animate({ top: newq12[0], left: newq12[1] }, speed12, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-13').animate({ top: newq13[0], left: newq13[1] }, speed13, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-14').animate({ top: newq14[0], left: newq14[1] }, speed14, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-15').animate({ top: newq15[0], left: newq15[1] }, speed15, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-16').animate({ top: newq16[0], left: newq16[1] }, speed16, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-17').animate({ top: newq17[0], left: newq17[1] }, speed17, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-18').animate({ top: newq18[0], left: newq18[1] }, speed18, function(){
+        animateDiv();});
+       $('#za-toliko-zad4-19').animate({ top: newq19[0], left: newq19[1] }, speed19, function(){
+        animateDiv(); });
+       $('#za-toliko-zad4-20').animate({ top: newq20[0], left: newq20[1] }, speed20, function(){
+        animateDiv();});
+
+     };
+
+     function calcSpeed(prev, next) {
+
+      var x = Math.abs(prev[1] - next[1]);
+      var y = Math.abs(prev[0] - next[0]);
+      
+      var greatest = x > y ? x : y;
+      
+      var speedModifier = 0.1;
+      
+      var speed = Math.ceil(greatest/speedModifier);
+      
+
+      return speed;
+      
+
     }
 
-     function animateDiv(){
-     var newq = makeNewPosition();
-     var newq2 = makeNewPosition();
-     var newq3 = makeNewPosition();
-     var newq4 = makeNewPosition();
-     var newq5 = makeNewPosition();
-     var newq6 = makeNewPosition();
-     var newq7 = makeNewPosition();
-     var newq8 = makeNewPosition();
-     var newq9 = makeNewPosition();
-     var newq10 = makeNewPosition();
-     var newq11 = makeNewPosition();
-     var newq12 = makeNewPosition();
-     var newq13 = makeNewPosition();
-     var newq14 = makeNewPosition();
-     var newq15 = makeNewPosition();
-     var newq16 = makeNewPosition();
-     var newq17 = makeNewPosition();
-     var newq18 = makeNewPosition();
-     var newq19 = makeNewPosition();
-     var newq20 = makeNewPosition();
-    
-    var oldq = $('#za-toliko-zad4-1').offset();
-    var oldq2 = $('#za-toliko-zad4-2').offset();
-    var oldq3 = $('#za-toliko-zad4-3').offset();
-    var oldq4 = $('#za-toliko-zad4-4').offset();
-    var oldq5 = $('#za-toliko-zad4-5').offset();
-    var oldq6 = $('#za-toliko-zad4-6').offset();
-    var oldq7 = $('#za-toliko-zad4-7').offset();
-    var oldq8 = $('#za-toliko-zad4-8').offset();
-    var oldq9 = $('#za-toliko-zad4-9').offset();
-    var oldq10 = $('#za-toliko-zad4-10').offset();
-    var oldq11 = $('#za-toliko-zad4-11').offset();
-    var oldq12 = $('#za-toliko-zad4-12').offset();
-    var oldq13 = $('#za-toliko-zad4-13').offset();
-    var oldq14 = $('#za-toliko-zad4-14').offset();
-    var oldq15= $('#za-toliko-zad4-15').offset();
-    var oldq16 = $('#za-toliko-zad4-16').offset();
-    var oldq17 = $('#za-toliko-zad4-17').offset();
-    var oldq18 = $('#za-toliko-zad4-18').offset();
-    var oldq19 = $('#za-toliko-zad4-19').offset();
-    var oldq20 = $('#za-toliko-zad4-20').offset();
-    
-
-    var speed = calcSpeed([oldq.top, oldq.left], newq);
-    var speed2 = calcSpeed([oldq2.top, oldq2.left], newq2);
-    var speed3 = calcSpeed([oldq3.top, oldq3.left], newq3);
-    var speed4 = calcSpeed([oldq4.top, oldq4.left], newq4);
-    var speed5 = calcSpeed([oldq5.top, oldq5.left], newq5);
-    var speed6 = calcSpeed([oldq6.top, oldq6.left], newq6);
-    var speed7 = calcSpeed([oldq7.top, oldq7.left], newq7);
-    var speed8 = calcSpeed([oldq8.top, oldq8.left], newq8);
-    var speed9 = calcSpeed([oldq9.top, oldq9.left], newq9);
-    var speed10 = calcSpeed([oldq10.top, oldq10.left], newq10);
-    var speed11 = calcSpeed([oldq11.top, oldq11.left], newq11);
-    var speed12 = calcSpeed([oldq12.top, oldq12.left], newq12);
-    var speed13 = calcSpeed([oldq13.top, oldq13.left], newq13);
-    var speed14 = calcSpeed([oldq14.top, oldq14.left], newq14);
-    var speed15 = calcSpeed([oldq15.top, oldq15.left], newq15);
-    var speed16 = calcSpeed([oldq16.top, oldq16.left], newq16);
-    var speed17 = calcSpeed([oldq17.top, oldq17.left], newq17);
-    var speed18 = calcSpeed([oldq18.top, oldq18.left], newq18);
-    var speed19 = calcSpeed([oldq19.top, oldq19.left], newq19);
-    var speed20 = calcSpeed([oldq20.top, oldq20.left], newq20);
-    
-
-    $('#za-toliko-zad4-1').animate({ top: newq[0], left: newq[1] }, speed, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-2').animate({ top: newq2[0], left: newq2[1] }, speed2, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-3').animate({ top: newq3[0], left: newq3[1] }, speed3, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-4').animate({ top: newq4[0], left: newq4[1] }, speed4, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-5').animate({ top: newq5[0], left: newq5[1] }, speed5, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-6').animate({ top: newq6[0], left: newq6[1] }, speed6, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-7').animate({ top: newq7[0], left: newq7[1] }, speed7, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-8').animate({ top: newq8[0], left: newq8[1] }, speed8, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-9').animate({ top: newq9[0], left: newq9[1] }, speed9, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-10').animate({ top: newq10[0], left: newq10[1] }, speed10, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-11').animate({ top: newq11[0], left: newq11[1] }, speed11, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-12').animate({ top: newq12[0], left: newq12[1] }, speed12, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-13').animate({ top: newq13[0], left: newq13[1] }, speed13, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-14').animate({ top: newq14[0], left: newq14[1] }, speed14, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-15').animate({ top: newq15[0], left: newq15[1] }, speed15, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-16').animate({ top: newq16[0], left: newq16[1] }, speed16, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-17').animate({ top: newq17[0], left: newq17[1] }, speed17, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-18').animate({ top: newq18[0], left: newq18[1] }, speed18, function(){
-      animateDiv();});
-    $('#za-toliko-zad4-19').animate({ top: newq19[0], left: newq19[1] }, speed19, function(){
-      animateDiv(); });
-    $('#za-toliko-zad4-20').animate({ top: newq20[0], left: newq20[1] }, speed20, function(){
-      animateDiv();});
-    
-};
-
-function calcSpeed(prev, next) {
-    
-    var x = Math.abs(prev[1] - next[1]);
-    var y = Math.abs(prev[0] - next[0]);
-    
-    var greatest = x > y ? x : y;
-    
-    var speedModifier = 0.1;
-    
-    var speed = Math.ceil(greatest/speedModifier);
-    
-
-    return speed;
-    
-
-}
-
-      function touchStartHandler(event) {
-            var obj = this;
-            if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
-            if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
-            console.log('huhu');
-            touch = true;
-            eliment = obj;
-            eliment.style.background = 'url("../../../media/images/zvezdice.png")';
-            eliment.style.backgroundSize = '100%';
+    function touchStartHandler(event) {
+      var obj = this;
+      if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
+      if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+      console.log('huhu');
+      touch = true;
+      eliment = obj;
+      eliment.style.background = 'url("../../../media/images/zvezdice.png")';
+      eliment.style.backgroundSize = '100%';
             //playSoundPop();
             audio_pop.volume = 1;
             audio_pop.currentTime = 0;
             audio_pop.play();
             //eliment.parentElement.removeChild(eliment);
             setTimeout(function(){ 
-                eliment.style.display= 'none';              
-                result++;
+              eliment.style.display= 'none';              
+              result++;
             }, 130); 
             resultTimoutHandler = setTimeout(function(){ 
-                checkResult();
+              checkResult();
             }, 1200); 
             errorTimeoutHandler = setTimeout(function(){
-                    checkError();
-                }, 5000);
-        }
-        function onWindowResize()
-        {
-            var myScreenWidth = 600;
-            if(window.innerWidth < 600)
+              checkError();
+            }, 5000);
+          }
+          function onWindowResize()
+            {  
+
+              $(document).ready(function(){
+            console.log('strana ucitana');
+            gameContainer = document.getElementById('id-game-container');
+            var divHeader = document.getElementById('id-div-header-text');
+            var visinaProzora = window.innerHeight;
+            var visinaHedera = divHeader.offsetHeight;
+            console.log(visinaHedera);
+            var rezultatvisina = visinaProzora - visinaHedera - 180;
+            console.log('a='+visinaHedera);
+            console.log('b='+visinaProzora);
+            gameContainer.style.height = rezultatvisina + 'px';
+          });
+
+            var gameCol8 = document.getElementById('id-col-osam');
+            var sirinaProzora8 = gameCol8.offsetWidth;
+            console.log(sirinaProzora8);
+
+            if(sirinaProzora8 > 600)
+
             {
-                myScreenWidth = window.innerWidth;
-            }
-            
-            //adjust game to less screen? ui.
-            divContainer4.style.width = myScreenWidth + 'px';
-            divContainer4.style.height = (window.innerHeight-80) + 'px';
-
-            ELEMENT_WIDTH = myScreenWidth/6;
-
-            elements = document.querySelectorAll('.bubble');
-            elements2 = document.querySelectorAll('.bubble2');
-            for(var i=0; i<5; i++){
+              offset = (gameContainer.offsetWidth - 5*(ELEMENT_WIDTH+7))/2;
+              elements = document.querySelectorAll('.bubble');
+              for(var i=0; i<5; i++){
                 elements[i].style.width = ELEMENT_WIDTH + "px";
                 elements[i].style.height = ELEMENT_WIDTH + "px";
-                elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+                elements[i].style.left = (((ELEMENT_WIDTH+10)*i)+offset) + "px";
                 elements[i].style.top = (120) + "px";
+              }
+              
+              for(var i=5; i<10; i++){
+                elements[i].style.width = ELEMENT_WIDTH + "px";
+                elements[i].style.height = ELEMENT_WIDTH + "px";
+                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)+offset) + "px";
+                elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+              }
+
+              for(var i=10; i<15; i++){
+                elements[i].style.width = ELEMENT_WIDTH + "px";
+                elements[i].style.height = ELEMENT_WIDTH + "px";
+                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-10)+offset) + "px";
+                elements[i].style.top = (ELEMENT_WIDTH+240) + "px"
+              }
+
+              for(var i=15; i<20; i++){
+                elements[i].style.width = ELEMENT_WIDTH + "px";
+                elements[i].style.height = ELEMENT_WIDTH + "px";
+                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-15)+offset) + "px";
+                elements[i].style.top = (ELEMENT_WIDTH+350) + "px"
+              }
+
             }
+
+            if(sirinaProzora8 < 600)
+
+             {  offset = (gameContainer.offsetWidth - 4*(ELEMENT_WIDTH+7))/2;
+              elements = document.querySelectorAll('.bubble');
+               // elements = document.querySelectorAll('.bubble');
+               for(var i=0; i<4; i++){
+                elements[i].style.width = ELEMENT_WIDTH + "px";
+                elements[i].style.height = ELEMENT_WIDTH + "px";
+                elements[i].style.left = (((ELEMENT_WIDTH+10)*i)+offset) + "px";
+                elements[i].style.top = (120) + "px";
+              }
+              for(var i=4; i<8; i++){
+                elements[i].style.width = ELEMENT_WIDTH + "px";
+                elements[i].style.height = ELEMENT_WIDTH + "px";
+                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-4)+offset) + "px";
+                elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+              }
+
+              for(var i=8; i<12; i++){
+                elements[i].style.width = ELEMENT_WIDTH + "px";
+                elements[i].style.height = ELEMENT_WIDTH + "px";
+                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-8)+offset) + "px";
+                elements[i].style.top = (ELEMENT_WIDTH+240) + "px"
+              }
+
+              for(var i=12; i<16; i++){
+                elements[i].style.width = ELEMENT_WIDTH + "px";
+                elements[i].style.height = ELEMENT_WIDTH + "px";
+                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-12)+offset) + "px";
+                elements[i].style.top = (ELEMENT_WIDTH+350) + "px"
+              }
+
+              for(var i=16; i<20; i++){
+                elements[i].style.width = ELEMENT_WIDTH + "px";
+                elements[i].style.height = ELEMENT_WIDTH + "px";
+                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-16)+offset) + "px";
+                elements[i].style.top = (ELEMENT_WIDTH+460) + "px"
+              }
+            }
+          }
+
+          $(document).ready(function(){
+
+           
+            console.log('strana ucitana');
+            gameContainer = document.getElementById('id-game-container');
+            var divHeader = document.getElementById('id-div-header-text');
             
-            for(var i=5; i<10; i++){
-                elements[i].style.width = ELEMENT_WIDTH + "px";
-                elements[i].style.height = ELEMENT_WIDTH + "px";
-                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
-                elements[i].style.top = (ELEMENT_WIDTH+260) + "px";
-            }
+            var visinaProzora = window.innerHeight;
+            var visinaHedera = divHeader.offsetHeight;
+            var rezultatvisina = visinaProzora - visinaHedera - 180;
+            console.log('a='+visinaHedera);
+            console.log('b='+visinaProzora);
+            gameContainer.style.height = rezultatvisina + 'px';
+            init();
 
-            for(var i=10; i<15; i++){
-                elements[i].style.width = ELEMENT_WIDTH + "px";
-                elements[i].style.height = ELEMENT_WIDTH + "px";
-                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-10)) + "px";
-                elements[i].style.top = (ELEMENT_WIDTH+390) + "px"
-            }
-
-            for(var i=15; i<20; i++){
-                elements[i].style.width = ELEMENT_WIDTH + "px";
-                elements[i].style.height = ELEMENT_WIDTH + "px";
-                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-15)) + "px";
-                elements[i].style.top = (ELEMENT_WIDTH+520) + "px"
-            }
-        }
+          });
 
 
-      function init()
-        {
+          function init()
+          {
             audio_pop.volume = 0.001;
             audio_pop.play();
             window.addEventListener( 'resize', onWindowResize, false );
-            divContainer4 = document.getElementById('id-container4-div');
-            console.log(window.innerWidth);
-            divContainer4.style.height = (window.innerHeight-80) + 'px';
-            if(window.innerWidth < 600)
+            
+            
+            var gameCol8 = document.getElementById('id-col-osam');
+            var sirinaProzora8 = gameCol8.offsetWidth;
+            elements = document.querySelectorAll('.bubble');
+
+            offset = (gameContainer.offsetWidth - 5*(ELEMENT_WIDTH+7))/2;
+
+            
+
+            if(sirinaProzora8 > 600)
             {
-                //adjust game to less screen?
-                divContainer4.style.width = window.innerWidth + 'px';
-                //alert("screen width too small, try landscape");
-                ELEMENT_WIDTH = window.innerWidth/6;
-                
-                elements = document.querySelectorAll('.bubble');
-                for(var i=0; i<5; i++){
-                    elements[i].style.width = ELEMENT_WIDTH + "px";
-                    elements[i].style.height = ELEMENT_WIDTH + "px";
-                    elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
-                    elements[i].style.top = (120) + "px";
-                }
-                for(var i=5; i<10; i++){
-                    elements[i].style.width = ELEMENT_WIDTH + "px";
-                    elements[i].style.height = ELEMENT_WIDTH + "px";
-                    elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
-                    elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
-                }
 
-                for(var i=10; i<15; i++){
-                elements[i].style.width = ELEMENT_WIDTH + "px";
-                elements[i].style.height = ELEMENT_WIDTH + "px";
-                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-10)) + "px";
-                elements[i].style.top = (ELEMENT_WIDTH+190) + "px"
+
+             elements = document.querySelectorAll('.bubble');
+             for(var i=0; i<5; i++){
+              elements[i].style.width = ELEMENT_WIDTH + "px";
+              elements[i].style.height = ELEMENT_WIDTH + "px";
+              elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+              elements[i].style.top = (120) + "px";
+            }
+            for(var i=5; i<10; i++){
+              elements[i].style.width = ELEMENT_WIDTH + "px";
+              elements[i].style.height = ELEMENT_WIDTH + "px";
+              elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
+              elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
             }
 
-                for(var i=15; i<20; i++){
-                elements[i].style.width = ELEMENT_WIDTH + "px";
-                elements[i].style.height = ELEMENT_WIDTH + "px";
-                elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-15)) + "px";
-                elements[i].style.top = (ELEMENT_WIDTH+250) + "px"
+            for(var i=10; i<15; i++){
+              elements[i].style.width = ELEMENT_WIDTH + "px";
+              elements[i].style.height = ELEMENT_WIDTH + "px";
+              elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-10)) + "px";
+              elements[i].style.top = (ELEMENT_WIDTH+240) + "px"
             }
 
+            for(var i=15; i<20; i++){
+              elements[i].style.width = ELEMENT_WIDTH + "px";
+              elements[i].style.height = ELEMENT_WIDTH + "px";
+              elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-15)) + "px";
+              elements[i].style.top = (ELEMENT_WIDTH+350) + "px"
             }
-            
-            var obj1 = document.getElementById('za-toliko-zad4-1');
-            var obj2 = document.getElementById('za-toliko-zad4-2');
-            var obj3 = document.getElementById('za-toliko-zad4-3');
-            var obj4 = document.getElementById('za-toliko-zad4-4');
-            var obj5 = document.getElementById('za-toliko-zad4-5');
-            var obj6 = document.getElementById('za-toliko-zad4-6');
-            var obj7 = document.getElementById('za-toliko-zad4-7');
-            var obj8 = document.getElementById('za-toliko-zad4-8');
-            var obj9 = document.getElementById('za-toliko-zad4-9');
-            var obj10 = document.getElementById('za-toliko-zad4-10');
-            var obj11 = document.getElementById('za-toliko-zad4-11');
-            var obj12 = document.getElementById('za-toliko-zad4-12');
-            var obj13 = document.getElementById('za-toliko-zad4-13');
-            var obj14 = document.getElementById('za-toliko-zad4-14');
-            var obj15 = document.getElementById('za-toliko-zad4-15');
-            var obj16 = document.getElementById('za-toliko-zad4-16');
-            var obj17 = document.getElementById('za-toliko-zad4-17');
-            var obj18 = document.getElementById('za-toliko-zad4-18');
-            var obj19 = document.getElementById('za-toliko-zad4-19');
-            var obj20 = document.getElementById('za-toliko-zad4-20');
-            
-            obj1.addEventListener('touchstart', touchStartHandler, false);
-            obj2.addEventListener('touchstart', touchStartHandler, false);
-            obj3.addEventListener('touchstart', touchStartHandler, false);
-            obj4.addEventListener('touchstart', touchStartHandler, false);
-            obj5.addEventListener('touchstart', touchStartHandler, false);
 
-            obj6.addEventListener('touchstart', touchStartHandler, false);
-            obj7.addEventListener('touchstart', touchStartHandler, false);
-            obj8.addEventListener('touchstart', touchStartHandler, false);
-            obj9.addEventListener('touchstart', touchStartHandler, false);
-            obj10.addEventListener('touchstart', touchStartHandler, false);
-            obj11.addEventListener('touchstart', touchStartHandler, false);
-            obj12.addEventListener('touchstart', touchStartHandler, false);
-            obj13.addEventListener('touchstart', touchStartHandler, false);
-            obj14.addEventListener('touchstart', touchStartHandler, false);
-            obj15.addEventListener('touchstart', touchStartHandler, false);
 
-            obj16.addEventListener('touchstart', touchStartHandler, false);
-            obj17.addEventListener('touchstart', touchStartHandler, false);
-            obj18.addEventListener('touchstart', touchStartHandler, false);
-            obj19.addEventListener('touchstart', touchStartHandler, false);
-            obj20.addEventListener('touchstart', touchStartHandler, false);
+          }
+
+          if(sirinaProzora8 < 600)
+
+          {
+           offset = (gameContainer.offsetWidth - 4*(ELEMENT_WIDTH+7))/2;
+           elements = document.querySelectorAll('.bubble');
+           for(var i=0; i<4; i++){
+            elements[i].style.width = ELEMENT_WIDTH + "px";
+            elements[i].style.height = ELEMENT_WIDTH + "px";
+            elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+            elements[i].style.top = (120) + "px";
+          }
+          for(var i=4; i<8; i++){
+            elements[i].style.width = ELEMENT_WIDTH + "px";
+            elements[i].style.height = ELEMENT_WIDTH + "px";
+            elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-4)) + "px";
+            elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+          }
+
+          for(var i=8; i<12; i++){
+            elements[i].style.width = ELEMENT_WIDTH + "px";
+            elements[i].style.height = ELEMENT_WIDTH + "px";
+            elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-8)) + "px";
+            elements[i].style.top = (ELEMENT_WIDTH+240) + "px"
+          }
+
+          for(var i=12; i<16; i++){
+            elements[i].style.width = ELEMENT_WIDTH + "px";
+            elements[i].style.height = ELEMENT_WIDTH + "px";
+            elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-12)) + "px";
+            elements[i].style.top = (ELEMENT_WIDTH+350) + "px"
+          }
+
+          for(var i=16; i<20; i++){
+            elements[i].style.width = ELEMENT_WIDTH + "px";
+            elements[i].style.height = ELEMENT_WIDTH + "px";
+            elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-16)) + "px";
+            elements[i].style.top = (ELEMENT_WIDTH+460) + "px"
+          }
+
+
         }
+        
+        var obj1 = document.getElementById('za-toliko-zad4-1');
+        var obj2 = document.getElementById('za-toliko-zad4-2');
+        var obj3 = document.getElementById('za-toliko-zad4-3');
+        var obj4 = document.getElementById('za-toliko-zad4-4');
+        var obj5 = document.getElementById('za-toliko-zad4-5');
+        var obj6 = document.getElementById('za-toliko-zad4-6');
+        var obj7 = document.getElementById('za-toliko-zad4-7');
+        var obj8 = document.getElementById('za-toliko-zad4-8');
+        var obj9 = document.getElementById('za-toliko-zad4-9');
+        var obj10 = document.getElementById('za-toliko-zad4-10');
+        var obj11 = document.getElementById('za-toliko-zad4-11');
+        var obj12 = document.getElementById('za-toliko-zad4-12');
+        var obj13 = document.getElementById('za-toliko-zad4-13');
+        var obj14 = document.getElementById('za-toliko-zad4-14');
+        var obj15 = document.getElementById('za-toliko-zad4-15');
+        var obj16 = document.getElementById('za-toliko-zad4-16');
+        var obj17 = document.getElementById('za-toliko-zad4-17');
+        var obj18 = document.getElementById('za-toliko-zad4-18');
+        var obj19 = document.getElementById('za-toliko-zad4-19');
+        var obj20 = document.getElementById('za-toliko-zad4-20');
+        
+        obj1.addEventListener('touchstart', touchStartHandler, false);
+        obj2.addEventListener('touchstart', touchStartHandler, false);
+        obj3.addEventListener('touchstart', touchStartHandler, false);
+        obj4.addEventListener('touchstart', touchStartHandler, false);
+        obj5.addEventListener('touchstart', touchStartHandler, false);
 
-        function checkResult()
-        {
-            console.log('checkResult juhu');
-            if(totalRedCount==6)
-            { if(totalBlueCount==4) {
-                if(!bravoShown)
-                {
-                    alert('Браво Петра!!!');
-                    bravoShown = true;
-                    location.reload(true);
-                }
+        obj6.addEventListener('touchstart', touchStartHandler, false);
+        obj7.addEventListener('touchstart', touchStartHandler, false);
+        obj8.addEventListener('touchstart', touchStartHandler, false);
+        obj9.addEventListener('touchstart', touchStartHandler, false);
+        obj10.addEventListener('touchstart', touchStartHandler, false);
+        obj11.addEventListener('touchstart', touchStartHandler, false);
+        obj12.addEventListener('touchstart', touchStartHandler, false);
+        obj13.addEventListener('touchstart', touchStartHandler, false);
+        obj14.addEventListener('touchstart', touchStartHandler, false);
+        obj15.addEventListener('touchstart', touchStartHandler, false);
 
-            }}
+        obj16.addEventListener('touchstart', touchStartHandler, false);
+        obj17.addEventListener('touchstart', touchStartHandler, false);
+        obj18.addEventListener('touchstart', touchStartHandler, false);
+        obj19.addEventListener('touchstart', touchStartHandler, false);
+        obj20.addEventListener('touchstart', touchStartHandler, false);
+      }
+
+      function checkResult()
+      {
+        console.log('checkResult juhu');
+        if(totalRedCount==6)
+          { if(totalBlueCount==4) {
+            if(!bravoShown)
+            {
+              alert('Браво Петра & Павле!!!');
+              bravoShown = true;
+              location.reload(false);
+            }
+
+          }}
         }
 
         function checkError()
         {   
-            console.log('checkError');
-            if(totalRedCount!==6) {alert('Пробај поново!!! :(');
-                location.reload(true);}
-                else if(totalBlueCount!==4) 
-            
-            {
-                alert('Пробај поново!!! :(');
-                location.reload(true);
-            }
-        
-        }
-        
+          console.log('checkError');
+          if(totalRedCount!==6) {alert('Пробај поново!!! :(');
+          location.reload(false);}
+          else if(totalBlueCount!==4) 
 
-    function goingDown(el)
+          {
+            alert('Пробај поново!!! :(');
+            location.reload(false);
+          }
+
+
+        }
+
+
+        function goingDown(el)
         {
-            if(!touch)
-            {
-                if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
-                if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
-                console.log('hehe');
-                eliment = el;
-                eliment.style.background = 'url("../../../media/images/zvezdice.png")';
-                eliment.style.backgroundSize = '100%';
+          if(!touch)
+          {
+            if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
+            if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+            console.log('hehe');
+            eliment = el;
+            eliment.style.background = 'url("../../../media/images/zvezdice.png")';
+            eliment.style.backgroundSize = '100%';
                 //playSoundPop();
                 audio_pop.volume = 1;
                 audio_pop.currentTime = 0;
                 audio_pop.play();
                 //eliment.parentElement.removeChild(eliment);
                 setTimeout(function(){ 
-                    eliment.style.display= 'none';              
-                    result++;
+                  eliment.style.display= 'none';              
+                  result++;
                 }, 130);
                 resultTimoutHandler = setTimeout(function(){ 
-                    checkResult();
+                  checkResult();
                 }, 1200);
                 errorTimeoutHandler = setTimeout(function(){
-                    checkError();
-                }, 15000);
+                  checkError();
+                }, 7000);
                 if (eliment.getAttribute('value')==1){
-                       console.log('crveni'); 
-                        totalRedCount--; console.log(totalRedCount);
-                        var redCount = document.getElementById('id-container-span-result-red').innerHTML;
-                    redCount++;
-                    console.log('Пукнуто црвених: ' + redCount); 
-                    document.getElementById('id-container-span-result-red').innerHTML = redCount;
-                } else {
-                    console.log('plavi'); totalBlueCount--; console.log(totalBlueCount);
-                    var blueCount = document.getElementById('id-container-span-result-blue').innerHTML;
-                    blueCount++;
-                    console.log('Пукнуто плавих: ' + blueCount); 
-                    document.getElementById('id-container-span-result-blue').innerHTML = blueCount;
-                }
-        }
-                    
-                    
-                }
+                 console.log('crveni'); 
+                 totalRedCount--; console.log(totalRedCount);
+                 var redCount = document.getElementById('id-container-span-result-red').innerHTML;
+                 redCount++;
+                 console.log('Пукнуто црвених: ' + redCount); 
+                 document.getElementById('id-container-span-result-red').innerHTML = redCount;
+               } else {
+                console.log('plavi'); totalBlueCount--; console.log(totalBlueCount);
+                var blueCount = document.getElementById('id-container-span-result-blue').innerHTML;
+                blueCount++;
+                console.log('Пукнуто плавих: ' + blueCount); 
+                document.getElementById('id-container-span-result-blue').innerHTML = blueCount;
+              }
+            }
+
+
+          }
 
 
         </script>
-    </head>
-        <body onload='init();' >
-        <div>
-        <br><div id='id-container4-div' class="c_container_div" style="">Пера је уловио пет црвених и пет плавих балона. Улови један црвени мање од њега и један плави више</div><br>
-        <div id='za-toliko-zad4-1' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-2' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:120px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-3' value=2 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:120px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-4' value=1 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-5' value=1 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-6' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:230px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-7' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:230px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-8' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:230px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-9' value=2 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:230px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-10' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:230px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-11' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:340px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-12' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:340px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-13' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:340px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-14' value=1 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:340px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-15' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:340px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-16' value=2 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-17' value=1 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:450px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-18' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:450px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-19' value=2 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        <div id='za-toliko-zad4-20' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-        </div> 
-        <div>
-            <id="id-container-div-result" class="container-result" style="color: blue;">Пукнуто плавих: <span id="id-container-span-result-blue">0</span>
-            <id="id-container-div-result" class="container-result" style="color: red; float: right;">Пукнуто црвених: <span id="id-container-span-result-red">0</span >
+      </head>
+
+      <body>
+        <div class="container-fluid"  id="id-container-div">
+          <div class="row" id="id-div-header-text"><center style="font-family:'Amatic SC'; font-color:black; background-color: lightblue; font-size: 50px; font-weight: bold; padding:10px">Пера је уловио пет црвених и пет плавих балона. Улови један црвени мање од њега и један плави више</center>
+          </div>
+          <div class="row">
+            <div class="col-md-2" id="id-col-2a">
+              
+            </div>
+            <div class="col-md-8" id="id-col-osam">
+              <div id="id-game-container" style="max-width: 600px; margin: 0 auto; position: relative;">
+                <div id='za-toliko-zad4-1' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-2' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:120px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-3' value=2 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:120px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-4' value=1 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-5' value=1 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-6' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:230px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-7' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:230px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-8' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:230px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-9' value=2 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:230px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-10' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:230px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-11' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:340px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-12' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:340px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-13' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:340px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-14' value=1 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:340px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-15' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:340px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-16' value=2 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-17' value=1 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:450px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-18' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:450px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-19' value=2 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+                <div id='za-toliko-zad4-20' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+              </div> 
+            </div>
+            <div class="col-md-2" id="id-col-2b"></div>
+          </div>
+          <div class="row" style="position: relative; height: 90px; ">
+            <div id="id-container-div-result" style="background-color: pink; height: 90px; opacity: 0.8; color: blue; font-size:35px; font-family:'Amatic SC'; right: 0; width: 100px; position: absolute;">Плавих: <span id="id-container-span-result-blue">0</span></div>
+            <div  id="id-container-div-result" style="background-color: pink; height: 90px; opacity: 0.8; color: red; font-size: 35px; font-family:'Amatic SC'; left: 0; width: 100px; position: absolute;">Црвених: <span id="id-container-span-result-red">0</span ></div>
+          </div>
+          <div class="row" style="background-color: pink; height: 90px; opacity: 0.8"><br><center><a href="za_toliko.html" type="button" class="btn btn-primary btn-lg" role="button" style="width: 150px; margin-right:10px; margin-bottom:15px">Назад</a>&nbsp;&nbsp;&nbsp;<a href="./za_toliko_5_a.html" type="button" class="btn btn-primary btn-lg" role="button" style="width: 150px; margin-left:10px; margin-bottom:15px">Поново</a></center>
+          </div>
         </div>
-    <div id="id-container4.1-div" class="c_container_div"><center><a href="za_toliko.html">Назад</a>&nbsp;&nbsp;&nbsp;<a href="./za_toliko_5.html">Поново</a> </center>
-    </div>
-    </body>
-</html>    
+      </body>
+      </html>    
