@@ -1,0 +1,144 @@
+<html>
+<head>
+  <title>МЕТАЛОФОН</title>
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet"> 
+  <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html" charset="iso-8859-5">
+  <script src="../../../js/jquery/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="../../../js/bootstrap-3.3.7/css/bootstrap.min.css">
+  <script src="../../../js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  body { 
+    background: url(../../../media/images/metalofon.png) no-repeat center center fixed; background-size: contain;
+  }
+  .nota:hover
+  {
+    stroke-width:1;
+    outline: orangered solid 5px;
+  }
+
+</style>
+
+<script>
+
+  var bravoShown = false;
+  var touch = false;
+  var soundCount = 0;
+  var eliment = 0;
+  var gameContainer = document.getElementById('id-game-container');
+  function init()
+  {
+   window.addEventListener( 'resize', onWindowResize, false );
+   $(document).ready( function() {  
+    gameContainer = document.getElementById('id-game-container');
+    var divHeader = document.getElementById('id-div-header-text');
+    var visinaProzora = window.innerHeight;
+    var visinaHedera = divHeader.offsetHeight;
+    console.log(visinaHedera);
+    var rezultatvisina = visinaProzora - visinaHedera - 90;
+    console.log('a='+visinaHedera);
+    console.log('b='+visinaProzora);
+    gameContainer.style.height = rezultatvisina + 'px';
+    var cNote = document.getElementById('Caudio');
+    var dNote = document.getElementById('Daudio');
+    var eNote = document.getElementById('Eaudio');
+    var fNote = document.getElementById('Faudio');
+    var gNote = document.getElementById('Gaudio');
+    var aNote = document.getElementById('Aaudio');
+    var hNote = document.getElementById('Haudio');
+    var c2Note = document.getElementById('C2audio');
+    $('#C').mousedown(function(){
+      cNote.currentTime = 0;
+      cNote.play();
+    });
+    $('#D').mousedown(function(){
+      dNote.currentTime = 0;
+      dNote.play();
+    });
+    $('#E').mousedown(function(){
+      eNote.currentTime = 0;
+      eNote.play();
+    });
+    $('#F').mousedown(function(){
+      fNote.currentTime = 0;
+      fNote.play();
+    });
+    $('#G').mousedown(function(){
+      gNote.currentTime = 0;
+      gNote.play();
+    });
+    $('#A').mousedown(function(){
+      aNote.currentTime = 0;
+      aNote.play();
+    });
+    $('#H').mousedown(function(){
+      hNote.currentTime = 0;
+      hNote.play();
+    });
+    $('#C2').mousedown(function(){
+      c2Note.currentTime = 0;
+      c2Note.play();
+    });
+  });
+ };
+ function onWindowResize () 
+ {
+  $(document).ready(function(){
+    gameContainer = document.getElementById('id-game-container');
+    var divHeader = document.getElementById('id-div-header-text');
+    var visinaProzora = window.innerHeight;
+    var visinaHedera = divHeader.offsetHeight;
+    console.log(visinaHedera);
+    var rezultatvisina = visinaProzora - visinaHedera - 90;
+    console.log('a='+visinaHedera);
+    console.log('b='+visinaProzora);
+    gameContainer.style.height = rezultatvisina + 'px';
+  });
+};
+function goingDown(el) {
+  if(!touch) {
+    eliment = el;
+    if (eliment.getAttribute('value') == 5){ 
+      alert('Браво Петра');
+      bravoShown = true;
+    } else if (eliment.getAttribute('value') !== 5) {
+      alert('Пробај поново');
+    };
+  };
+};
+</script>
+<body onload="init();">
+  <div class="container-fluid"  id="id-container-div">
+    <div class="row" id="id-div-header-text"><center style="font-family:'Amatic SC'; font-color:black; background-color: lightblue; font-size: 50px; font-weight: bold; padding:10px">ПЕРА ЈЕ ОДСВИРАО НОТУ "МИ", ТИ ОДСВИРАЈ ЗА ДВЕ НОТЕ ВИШУ ОД ЊЕГА!</center>
+    </div>
+    <div class="row">
+      <div class="col-md-2" id="id-col-2a">
+      </div>
+      <div class="col-md-8" id="id-col-osam" style=" cursor: url(../../../media/images/acincursor2.cur), auto">
+        <div id="id-game-container" style="max-width: 600px; position: relative; margin: 0 auto;"> 
+        <div id="C" value ="1" onmousedown='goingDown(this);' style="width: 60px; height: 250px; background-color: red; border: 5px solid; margin: 5px; margin-top: 25px; float: left; font-size: 20px;font-family: 'Do Hyeon', sans-serif; text-align: center;" class="nota"><span style="color: yellow">ДО</span></div>
+        <audio id="Caudio"><source src="../../../media/sounds/C.wav"></source></audio>
+        <div id="D" value="2" onmousedown='goingDown(this);' style="width: 60px; height: 230px; background-color: blue; border: 5px solid; margin: 5px; margin-top: 25px; float: left; font-size: 20px; font-family: 'Do Hyeon', sans-serif; text-align: center; font-color: pink" class="nota"><span style="color: pink">РЕ</span></div>
+        <audio id="Daudio"><source src="../../../media/sounds/D.wav"></source></audio>
+        <div id="E" value="3" onmousedown='goingDown(this);' style="width: 60px; height: 210px; background-color: green; border: 5px solid; margin: 5px; margin-top: 25px; float: left; font-size: 20px;font-family: 'Do Hyeon', sans-serif; text-align: center; font-color: red" class="nota"><span style="color: turquoise">МИ</span></div>
+        <audio  id="Eaudio"><source src="../../../media/sounds/E.wav"></source></audio>
+        <div id="F" value="4" onmousedown='goingDown(this);' style="width: 60px; height: 190px; background-color: yellow; border: 5px solid; margin: 5px; margin-top: 25px; float: left; font-size: 20px;font-family: 'Do Hyeon', sans-serif; text-align: center; font-color: blue" class="nota"><span style="color: purple">ФА</span></div>
+        <audio  id="Faudio"><source src="../../../media/sounds/F.wav"></source></audio>
+        <div id="G" value="5" onmousedown='goingDown(this);' style="width: 60px; height: 170px; background-color: purple; border: 5px solid; margin: 5px; margin-top: 25px; float: left; font-size: 20px;font-family: 'Do Hyeon', sans-serif; text-align: center; font-color: red" class="nota"><span style="color: red">СОЛ</span></div>
+        <audio id="Gaudio"><source src="../../../media/sounds/G.wav"></source></audio>
+        <div id="A" value="6" onmousedown='goingDown(this);' style="width: 60px; height: 150px; background-color: magenta; border: 5px solid; margin: 5px; margin-top: 25px; float: left; font-size: 20px;font-family: 'Do Hyeon', sans-serif; text-align: center; font-color: green" class="nota"><span style="color: red">ЛА</span></div>
+        <audio id="Aaudio"><source src="../../../media/sounds/A.wav"></source></audio>
+        <div id="H" value="7" onmousedown='goingDown(this);' style="width: 60px; height: 130px; background-color: turquoise; border: 5px solid; margin: 5px; margin-top: 25px; float: left; font-size: 20px;font-family: 'Do Hyeon', sans-serif; text-align: center; font-color: magenta" class="nota"><span style="color: magenta">СИ</span></div>
+        <audio id="Haudio"><source src="../../../media/sounds/H.wav"></source></audio>
+        <div id="C2" value="8" onmousedown='goingDown(this);' style="width: 60px; height: 110px; background-color: red; border: 5px solid; margin: 5px; margin-top: 25px; float: left; font-size: 20px;font-family: 'Do Hyeon', sans-serif; text-align: center; font-color: turquoise" class="nota"><span style="color: green">ДО</span></div>
+        <audio id="C2audio"><source src="../../../media/sounds/C2.wav"></source></audio>
+      </div>
+    </div>
+    <div class="col-md-2" id="id-col-2b"></div>
+  </div>
+  <div class="row" style="background-color: pink; height: 90px; opacity:0.8"><br><center><a href="za_toliko.html" type="button" class="btn btn-primary btn-lg" role="button" style="width: 150px; margin-right:10px; margin-bottom:15px">НАЗАД</a>&nbsp;&nbsp;&nbsp;<a href="./metalofon.html" type="button" class="btn btn-primary btn-lg" role="button" style="width: 150px; margin-left:10px; margin-bottom:15px">ПОНОВО</a></center>
+  </div>
+</div>
+</body>
+</head>
+</html> 
