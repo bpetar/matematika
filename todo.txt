@@ -8,3 +8,4 @@ math todo
 - make screen orientation
 
 - nis russion translation
+- test 1
