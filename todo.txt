@@ -9,3 +9,5 @@ math todo
 
 - nis russion translation
 - test 1
+
+- ponocni dvoboj, dva ucenika pocnu takmicenje iz neke oblasti, aplikacija im izbacuje pet zadataka jedan po jedan (random 5, svaka oblast ima 20 zadataka), ko prvi uradi zadatak dobije poen. pobednik je onaj ko ima vise poena na kraju.

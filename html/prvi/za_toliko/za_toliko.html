@@ -1,41 +1,154 @@
 <html>
-	<head>
-		<title>За толико већи/мањи број.</title>
-		<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-		<style>
-			body { 
-				background: url(../../../media/images/3061.png) no-repeat center center fixed; background-position-y: bottom 0px; background-size: contain
-			}
-			.buttonShape {
-					margin: 50px;
-					opacity: 0.8;
-					width: 300px
-				}
-				button:disabled,
-				button[disabled]{
-  				border: 1px solid #999999;
-  				background-color: #cccccc;
-  				color: #666666;
-				}
-		</style>
-		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="../../../js/jquery/jquery-3.3.1.min.js"></script>
-		<script src="../../../js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="../../../js/bootstrap-3.3.7/css/bootstrap.min.css">
-	</head>
-	<body>
-		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 80px; background-color: lightblue; opacity:0.7">ЗА ТОЛИКО ВЕЋИ/МАЊИ БРОЈ</center></div>
-		<div class="row"><center style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 45px; background-color: lightblue; opacity:0.7">Научи да препознаш за колико се један број разликује од другог</center></div>
-		<div class="row" style="height: 670px;">
-		<div class="col-md-1" style="width: 100px;"></div>
-		<div class="col-md-2"><a href="za_toliko_1.html"  style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape" role="button">Задатак1: Балончићи1</a></div>
-		<div class="col-md-2"><a href="za_toliko_2.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Задатак2: Балончићи2</a></div>
-		<div class="col-md-2"><a href="za_toliko_4.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Задатак3: Балончићи3</a></div>
-		<div class="col-md-2"><a href="za_toliko_5.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Задатак4: Балончићи4</a></div>
-		<div class="col-md-2"><a href="za_toliko_3.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape glyphicon glyphicon-lock disabled" role="button">Задатак5: Оловке</a></div>
-		</div>
-		<div class="row" style="height: 75px; background-color: pink;  opacity:0.7; position: fixed; bottom: 0; width: 110%"><center><a href="../prvi.html" type="button" class="btn btn-primary btn-lg" role="button" style="margin-top: 20px">Назад</a></center>
-		</div>
-	</body>
+<head>
+  <title>За толико већи/мањи број.</title>
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+  <style>
+    body { 
+      background: url(../../../media/images/3061.png) no-repeat center center fixed; background-position-y: 400px; background-size: contain
+    }
+    .buttonShape {
+      margin: 5vw;
+      opacity: 0.98;
+      width: 100px;
+      height: 100px;
+    }
+    button:disabled,
+    button[disabled]{
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #666666;
+    }
+
+    .mainHeader {
+      font-size: 80px;
+    }
+    .subHeader {
+      font-size: 40px;
+    }
+
+    @media only screen and (max-width: 800px) {
+      .mainHeader {
+        font-size: 60px;
+      }
+      .subHeader {
+        font-size: 30px;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .mainHeader {
+        font-size: 40px;
+      }
+      .subHeader {
+        font-size: 20px;
+      }
+
+      body { 
+        background: url(../../../media/images/3061.png) no-repeat center center fixed; background-position-y: 50px; background-size: contain;
+      }
+
+    }
+
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready( function() {
+
+      // javascript code
+      var devVersion = true;
+      
+      // open all tasks for dev version
+      if (devVersion) {
+        /*$('.btn').each(function() {
+          this.prop('disabled', false);
+        });*/
+        //$('#grka').prop('disabled', true);
+        //$('#grka').attr('disabled','disabled');
+        $('#grka').toggleClass('disabled', false);
+        console.log($('#grka'));
+      }
+    });
+
+    window.onload = function () { 
+      //$('#grka').toggleClass('disabled', false);
+      var devVersion = true;
+      if (devVersion) {
+        $('.btn').each(function() {
+          $(this).toggleClass('disabled', false);
+        });
+        $('.spanky').each(function(i) {
+          $(this).toggleClass('glyphicon-lock', false);
+          $(this).toggleClass('glyphicon', false);
+          $(this).css("font-family", 'Amatic SC');
+          $(this).text(i+1);
+        });
+      }
+    }
+
+  </script>
+
+
+
+
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../../js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../js/bootstrap-3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container-fluid"  id="id-container-div">
+
+    <div class="row mainHeader"><center style="font-family:'Amatic SC', cursive; font-weight: bold; background-color: lightblue; opacity:0.7">ЗА ТОЛИКО ВЕЋИ/МАЊИ БРОЈ</center></div>
+    <div class="row subHeader"><center style="font-family:'Amatic SC', cursive; font-weight: bold; background-color: lightblue; opacity:0.7">Научи да препознаш за колико се један број разликује од другог</center></div>
+    <div class="row" style="margin-bottom: 100px; text-align:center;">
+      <div style="display: inline-block; max-width: 1500px;">
+        <a href="za_toliko_1.html"  style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky" style="font-family:'Amatic SC', cursive; font-weight: bold; font-size: 40px;">1</span></p>
+        </a>
+        <a href="za_toliko_2.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape disabled" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky glyphicon glyphicon-lock" style="font-weight: bold; font-size: 40px;"></span></p>
+        </a>
+        <a href="za_toliko_3.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape disabled" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky glyphicon glyphicon-lock" style="font-weight: bold; font-size: 40px;"></span></p>
+        </a>
+        <a href="za_toliko_4.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape disabled" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky glyphicon glyphicon-lock" style="font-weight: bold; font-size: 40px;"></span></p>
+        </a>
+        <a href="za_toliko_5.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape disabled" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky glyphicon glyphicon-lock" style="font-weight: bold; font-size: 40px;"></span></p>
+        </a>
+        <a href="za_toliko_6.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape disabled" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky glyphicon glyphicon-lock" style="font-weight: bold; font-size: 40px;"></span></p>
+        </a>
+        <a href="za_toliko_7.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape disabled" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky glyphicon glyphicon-lock" style="font-weight: bold; font-size: 40px;"></span></p>
+        </a>
+        <a href="za_toliko_8.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape disabled" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky glyphicon glyphicon-lock" style="font-weight: bold; font-size: 40px;"></span></p>
+        </a>
+        <a href="za_toliko_9.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape disabled" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky glyphicon glyphicon-lock" style="font-weight: bold; font-size: 40px;"></span></p>
+        </a>
+        <a href="za_toliko_10.html" style="text-decoration: none" type="button" class="btn btn-primary btn-lg buttonShape disabled" role="button">
+          <p><span>Задатак</span></p>
+          <p><span class="spanky glyphicon glyphicon-lock" style="font-weight: bold; font-size: 40px;"></span></p>
+        </a>
+      </div>
+    </div>
+    <div class="row" style="height: 75px; background-color: pink; opacity: 0.7; position: fixed; bottom: 0; width: 100%"><center><a href="../prvi.html" type="button" class="btn btn-primary btn-lg" role="button" style="margin-top: 20px">Назад</a></center>
+    </div>
+  </div>
+</body>
 </html>

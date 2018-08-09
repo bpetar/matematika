@@ -99,10 +99,12 @@ function goingDown(el) {
   if(!touch) {
     eliment = el;
     if (eliment.getAttribute('value') == 5){ 
+      setTimeout(function(){ 
       alert('Браво Петра');
+      }, 130);
       bravoShown = true;
     } else if (eliment.getAttribute('value') !== 5) {
-      alert('Пробај поново');
+      //alert('Пробај поново');
     };
   };
 };
