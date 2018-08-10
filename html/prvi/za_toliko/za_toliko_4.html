@@ -1,316 +1,328 @@
 <html>
-	<head>
-		<title>абаКаНаИ аБаАаЛаОаНбаИбаЕ 3</title>
-		<meta name="viewport" content="width=device-width,user-scalable=no">
-		<style>
-			body { 
-				margin: 0; 
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 128%;
-			}
-			
-			.c_container_div
-			{
-				//border: 2px solid green;
-				width: 600px;
-				margin: 0 auto;
-				//padding: 5px;
-				position: relative;
-			}
-			
-			.bubble { 
-				width:100px;
-				height:100px;
-				position:absolute;
-				margin:7px;
-				cursor:pointer;
-				-webkit-tap-highlight-color:transparent;
-			}
-			
-		</style>
-		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
-		
-		<script>
-		var eliment = 0;
-		var coinsaremoved = false;
-		var ELEMENT_WIDTH = 100;
-		var bravoShown = false;
-		var result = 0;
-		var bubbles = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
-		var audio_pop = 0;
-		var touch = false;
-		var resultTimoutHandler = 0;
-		var errorTimeoutHandler = 0;
-		var totalBlueCount=10;
-		var totalRedCount=10;
+<head>
+  <title>Пукни балончиће 3</title>
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+  <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html" charset="iso-8859-5">
+  <script src="../../../js/jquery/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="../../../js/bootstrap-3.3.7/css/bootstrap.min.css">
+  <script src="../../../js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    body { 
+    }
 
-		audio_pop = document.createElement('audio');
-		var source_pop = document.createElement('source');
-		source_pop.src = '../../../media/sounds/pop.mp3';
-		audio_pop.appendChild(source_pop); 
-
-		var divContainer4 = document.getElementById('id-container4-div');
-
-		function touchStartHandler(event) {
-			var obj = this;
-			if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
-			if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
-			console.log('huhu');
-			touch = true;
-			eliment = obj;
-			eliment.style.background = 'url("../../../media/images/zvezdice.png")';
-			eliment.style.backgroundSize = '100%';
-			//playSoundPop();
-			audio_pop.volume = 1;
-			audio_pop.currentTime = 0;
-			audio_pop.play();
-			//eliment.parentElement.removeChild(eliment);
-			setTimeout(function(){ 
-				eliment.style.display= 'none';				
-				result++;
-			}, 130); 
-			resultTimoutHandler = setTimeout(function(){ 
-				checkResult();
-			}, 1200); 
-			errorTimeoutHandler = setTimeout(function(){
-					checkError();
-				}, 5000);
-		}
-		function onWindowResize()
-		{
-			var myScreenWidth = 600;
-			if(window.innerWidth < 600)
-			{
-				myScreenWidth = window.innerWidth;
-			}
-			
-			//adjust game to less screen? ui.
-			divContainer4.style.width = myScreenWidth + 'px';
-			divContainer4.style.height = (window.innerHeight-40) + 'px';
-
-			ELEMENT_WIDTH = myScreenWidth/6;
-
-			elements = document.querySelectorAll('.bubble');
-
-			for(var i=0; i<5; i++){
-				elements[i].style.width = ELEMENT_WIDTH + "px";
-				elements[i].style.height = ELEMENT_WIDTH + "px";
-				elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
-				elements[i].style.top = (120) + "px";
-			}
-			
-			for(var i=5; i<10; i++){
-				elements[i].style.width = ELEMENT_WIDTH + "px";
-				elements[i].style.height = ELEMENT_WIDTH + "px";
-				elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
-				elements[i].style.top = (ELEMENT_WIDTH+260) + "px";
-			}
-
-			for(var i=10; i<15; i++){
-				elements[i].style.width = ELEMENT_WIDTH + "px";
-				elements[i].style.height = ELEMENT_WIDTH + "px";
-				elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-10)) + "px";
-				elements[i].style.top = (ELEMENT_WIDTH+390) + "px"
-			}
-
-			for(var i=15; i<20; i++){
-				elements[i].style.width = ELEMENT_WIDTH + "px";
-				elements[i].style.height = ELEMENT_WIDTH + "px";
-				elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-15)) + "px";
-				elements[i].style.top = (ELEMENT_WIDTH+520) + "px"
-			}
-		}
-
-		function init()
-		{
-			audio_pop.volume = 0.001;
-			audio_pop.play();
-			window.addEventListener( 'resize', onWindowResize, false );
-			divContainer4 = document.getElementById('id-container4-div');
-			console.log(window.innerWidth);
-			divContainer4.style.height = (window.innerHeight-40) + 'px';
-			if(window.innerWidth < 600)
-			{
-				//adjust game to less screen?
-				divContainer4.style.width = window.innerWidth + 'px';
-				//alert("screen width too small, try landscape");
-				ELEMENT_WIDTH = window.innerWidth/6;
-				
-				elements = document.querySelectorAll('.bubble');
-				for(var i=0; i<5; i++){
-					elements[i].style.width = ELEMENT_WIDTH + "px";
-					elements[i].style.height = ELEMENT_WIDTH + "px";
-					elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
-					elements[i].style.top = (120) + "px";
-				}
-				for(var i=5; i<10; i++){
-					elements[i].style.width = ELEMENT_WIDTH + "px";
-					elements[i].style.height = ELEMENT_WIDTH + "px";
-					elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
-					elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
-				}
-
-				for(var i=10; i<15; i++){
-				elements[i].style.width = ELEMENT_WIDTH + "px";
-				elements[i].style.height = ELEMENT_WIDTH + "px";
-				elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-10)) + "px";
-				elements[i].style.top = (ELEMENT_WIDTH+190) + "px"
-			}
-
-				for(var i=15; i<20; i++){
-				elements[i].style.width = ELEMENT_WIDTH + "px";
-				elements[i].style.height = ELEMENT_WIDTH + "px";
-				elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-15)) + "px";
-				elements[i].style.top = (ELEMENT_WIDTH+250) + "px"
-			}
-
-			}
-			
-			var obj1 = document.getElementById('za-toliko-zad4-1');
-			var obj2 = document.getElementById('za-toliko-zad4-2');
-			var obj3 = document.getElementById('za-toliko-zad4-3');
-			var obj4 = document.getElementById('za-toliko-zad4-4');
-			var obj5 = document.getElementById('za-toliko-zad4-5');
-			var obj6 = document.getElementById('za-toliko-zad4-6');
-			var obj7 = document.getElementById('za-toliko-zad4-7');
-			var obj8 = document.getElementById('za-toliko-zad4-8');
-			var obj9 = document.getElementById('za-toliko-zad4-9');
-			var obj10 = document.getElementById('za-toliko-zad4-10');
-			var obj11 = document.getElementById('za-toliko-zad4-11');
-			var obj12 = document.getElementById('za-toliko-zad4-12');
-			var obj13 = document.getElementById('za-toliko-zad4-13');
-			var obj14 = document.getElementById('za-toliko-zad4-14');
-			var obj15 = document.getElementById('za-toliko-zad4-15');
-			var obj16 = document.getElementById('za-toliko-zad4-16');
-			var obj17 = document.getElementById('za-toliko-zad4-17');
-			var obj18 = document.getElementById('za-toliko-zad4-18');
-			var obj19 = document.getElementById('za-toliko-zad4-19');
-			var obj20 = document.getElementById('za-toliko-zad4-20');
-			
-			obj1.addEventListener('touchstart', touchStartHandler, false);
-			obj2.addEventListener('touchstart', touchStartHandler, false);
-			obj3.addEventListener('touchstart', touchStartHandler, false);
-			obj4.addEventListener('touchstart', touchStartHandler, false);
-			obj5.addEventListener('touchstart', touchStartHandler, false);
-
-			obj6.addEventListener('touchstart', touchStartHandler, false);
-			obj7.addEventListener('touchstart', touchStartHandler, false);
-			obj8.addEventListener('touchstart', touchStartHandler, false);
-			obj9.addEventListener('touchstart', touchStartHandler, false);
-			obj10.addEventListener('touchstart', touchStartHandler, false);
-			obj11.addEventListener('touchstart', touchStartHandler, false);
-			obj12.addEventListener('touchstart', touchStartHandler, false);
-			obj13.addEventListener('touchstart', touchStartHandler, false);
-			obj14.addEventListener('touchstart', touchStartHandler, false);
-			obj15.addEventListener('touchstart', touchStartHandler, false);
-
-			obj16.addEventListener('touchstart', touchStartHandler, false);
-			obj17.addEventListener('touchstart', touchStartHandler, false);
-			obj18.addEventListener('touchstart', touchStartHandler, false);
-			obj19.addEventListener('touchstart', touchStartHandler, false);
-			obj20.addEventListener('touchstart', touchStartHandler, false);
-		}
-
-		function checkResult()
-		{
-			console.log('checkResult juhu');
-			if(totalRedCount==totalBlueCount+3)
-			{
-				if(!bravoShown)
-				{
-					alert('абаАаВаО ааЕббаА!!!');
-					bravoShown = true;
-					location.reload(true);
-				}
-
-			}
-		}
-
-		function checkError()
-		{	
-			console.log('checkError');
-			if(totalRedCount!==totalBlueCount+3)
-			{
-				alert('абаОаБаАб аПаОаНаОаВаО!!! :(');
-				location.reload(true);
-			}
-		}
-		
-
-	function goingDown(el)
-		{
-			if(!touch)
-			{
-				if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
-				if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
-				console.log('hehe');
-				eliment = el;
-				eliment.style.background = 'url("../../../media/images/zvezdice.png")';
-				eliment.style.backgroundSize = '100%';
-				//playSoundPop();
-				audio_pop.volume = 1;
-				audio_pop.currentTime = 0;
-				audio_pop.play();
-				//eliment.parentElement.removeChild(eliment);
-				setTimeout(function(){ 
-					eliment.style.display= 'none';				
-					result++;
-				}, 130);
-				resultTimoutHandler = setTimeout(function(){ 
-					checkResult();
-				}, 1200);
-				errorTimeoutHandler = setTimeout(function(){
-					checkError();
-				}, 5000);
-				if (eliment.getAttribute('value')==1){
-					   console.log('crveni'); 
-						totalRedCount--; console.log(totalRedCount);
-					} else {console.log('plavi'); totalBlueCount--; console.log(totalBlueCount);}
-		}
-					
-					
-				}
+    .bubble { 
+      width:100px;
+      height:100px;
+      position:absolute;
+      margin:7px;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
 
 
-		</script>
-	</head>
+      .mainHeader {
+        font-size: 50px;
+      }
 
-	
-	<body onload='init();' >
+      @media only screen and (max-width: 800px) {
+        .mainHeader {
+          font-size: 40px;
+        }
+      }
+  </style>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
 
-	<div id="id-container4-div" class="c_container_div" style="">
-		<br>
-		ааЕаКаА ббаВаЕаНаИб аБаАаЛаОаНбаИбаА аБбаДаЕ ббаИ аВаИбаЕ аНаЕаГаО аПаЛаАаВаИб.<br>
-		<br>
+    <script>
+      var eliment = 0;
+      var coinsaremoved = false;
+      var ELEMENT_WIDTH = 100;
+      var bravoShown = false;
+      var result = 0;
+      var bubbles = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
+      var audio_pop = 0;
+      var touch = false;
+      var resultTimoutHandler = 0;
+      var errorTimeoutHandler = 0;
+      var totalBlueCount=10;
+      var totalRedCount=10;
 
-		<div id='za-toliko-zad4-1' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-2' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:120px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-3' value=2 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:120px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-4' value=1 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-5' value=1 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:120px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		
-		<div id='za-toliko-zad4-6' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:230px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-7' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:230px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-8' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:230px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-9' value=2 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:230px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-10' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:230px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-11' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:340px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-12' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:340px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-13' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:340px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-14' value=1 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:340px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-15' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:340px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		
-		<div id='za-toliko-zad4-16' value=2 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-17' value=1 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:450px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-18' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:450px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-19' value=2 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		<div id='za-toliko-zad4-20' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:450px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
-		
-	</div>
-		
-	<div id="id-container4-div" class="c_container_div" style="width:100px">
-	<center><a href="za_toliko.html">ааАаЗаАаД</a>&nbsp;&nbsp;&nbsp;<a href="./za_toliko_4.html">ааОаНаОаВаО</a> <center>
-	</div>
-	
-	</body>
+      audio_pop = document.createElement('audio');
+      var source_pop = document.createElement('source');
+      source_pop.src = '../../../media/sounds/pop.mp3';
+      audio_pop.appendChild(source_pop); 
+
+      var divContainer4 = document.getElementById('id-container4-div');
+
+      function touchStartHandler(event) {
+        var obj = this;
+        if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
+        if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+        console.log('huhu');
+        touch = true;
+        eliment = obj;
+        eliment.style.background = 'url("../../../media/images/zvezdice.png")';
+        eliment.style.backgroundSize = '100%';
+      //playSoundPop();
+      audio_pop.volume = 1;
+      audio_pop.currentTime = 0;
+      audio_pop.play();
+      //eliment.parentElement.removeChild(eliment);
+      setTimeout(function(){ 
+        eliment.style.display= 'none';        
+        result++;
+      }, 130); 
+      resultTimoutHandler = setTimeout(function(){ 
+        checkResult();
+      }, 1200); 
+      errorTimeoutHandler = setTimeout(function(){
+        checkError();
+      }, 5000);
+    }
+    function onWindowResize()
+    {
+      /*var myScreenWidth = 600;
+      if(window.innerWidth < 600)
+      {
+        myScreenWidth = window.innerWidth;
+      }
+      
+      //adjust game to less screen? ui.
+      divContainer4.style.width = myScreenWidth + 'px';
+      divContainer4.style.height = (window.innerHeight-40) + 'px';
+
+      ELEMENT_WIDTH = myScreenWidth/6;
+
+      elements = document.querySelectorAll('.bubble');
+
+      for(var i=0; i<5; i++){
+        elements[i].style.width = ELEMENT_WIDTH + "px";
+        elements[i].style.height = ELEMENT_WIDTH + "px";
+        elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+        elements[i].style.top = (120) + "px";
+      }
+      
+      for(var i=5; i<10; i++){
+        elements[i].style.width = ELEMENT_WIDTH + "px";
+        elements[i].style.height = ELEMENT_WIDTH + "px";
+        elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
+        elements[i].style.top = (ELEMENT_WIDTH+260) + "px";
+      }
+
+      for(var i=10; i<15; i++){
+        elements[i].style.width = ELEMENT_WIDTH + "px";
+        elements[i].style.height = ELEMENT_WIDTH + "px";
+        elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-10)) + "px";
+        elements[i].style.top = (ELEMENT_WIDTH+390) + "px"
+      }
+
+      for(var i=15; i<20; i++){
+        elements[i].style.width = ELEMENT_WIDTH + "px";
+        elements[i].style.height = ELEMENT_WIDTH + "px";
+        elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-15)) + "px";
+        elements[i].style.top = (ELEMENT_WIDTH+520) + "px"
+      }*/
+    }
+
+    function init()
+    {
+      audio_pop.volume = 0.001;
+      audio_pop.play();
+      window.addEventListener( 'resize', onWindowResize, false );
+      /*divContainer4 = document.getElementById('id-container4-div');
+      console.log(window.innerWidth);
+      divContainer4.style.height = (window.innerHeight-40) + 'px';
+      if(window.innerWidth < 600)
+      {
+        //adjust game to less screen?
+        divContainer4.style.width = window.innerWidth + 'px';
+        //alert("screen width too small, try landscape");
+        ELEMENT_WIDTH = window.innerWidth/6;
+        
+        elements = document.querySelectorAll('.bubble');
+        for(var i=0; i<5; i++){
+          elements[i].style.width = ELEMENT_WIDTH + "px";
+          elements[i].style.height = ELEMENT_WIDTH + "px";
+          elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+          elements[i].style.top = (120) + "px";
+        }
+        for(var i=5; i<10; i++){
+          elements[i].style.width = ELEMENT_WIDTH + "px";
+          elements[i].style.height = ELEMENT_WIDTH + "px";
+          elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
+          elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+        }
+
+        for(var i=10; i<15; i++){
+        elements[i].style.width = ELEMENT_WIDTH + "px";
+        elements[i].style.height = ELEMENT_WIDTH + "px";
+        elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-10)) + "px";
+        elements[i].style.top = (ELEMENT_WIDTH+190) + "px"
+      }
+
+        for(var i=15; i<20; i++){
+        elements[i].style.width = ELEMENT_WIDTH + "px";
+        elements[i].style.height = ELEMENT_WIDTH + "px";
+        elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-15)) + "px";
+        elements[i].style.top = (ELEMENT_WIDTH+250) + "px"
+      }
+
+    }*/
+
+    var obj1 = document.getElementById('za-toliko-zad4-1');
+    var obj2 = document.getElementById('za-toliko-zad4-2');
+    var obj3 = document.getElementById('za-toliko-zad4-3');
+    var obj4 = document.getElementById('za-toliko-zad4-4');
+    var obj5 = document.getElementById('za-toliko-zad4-5');
+    var obj6 = document.getElementById('za-toliko-zad4-6');
+    var obj7 = document.getElementById('za-toliko-zad4-7');
+    var obj8 = document.getElementById('za-toliko-zad4-8');
+    var obj9 = document.getElementById('za-toliko-zad4-9');
+    var obj10 = document.getElementById('za-toliko-zad4-10');
+    var obj11 = document.getElementById('za-toliko-zad4-11');
+    var obj12 = document.getElementById('za-toliko-zad4-12');
+    var obj13 = document.getElementById('za-toliko-zad4-13');
+    var obj14 = document.getElementById('za-toliko-zad4-14');
+    var obj15 = document.getElementById('za-toliko-zad4-15');
+    var obj16 = document.getElementById('za-toliko-zad4-16');
+    var obj17 = document.getElementById('za-toliko-zad4-17');
+    var obj18 = document.getElementById('za-toliko-zad4-18');
+    var obj19 = document.getElementById('za-toliko-zad4-19');
+    var obj20 = document.getElementById('za-toliko-zad4-20');
+
+    obj1.addEventListener('touchstart', touchStartHandler, false);
+    obj2.addEventListener('touchstart', touchStartHandler, false);
+    obj3.addEventListener('touchstart', touchStartHandler, false);
+    obj4.addEventListener('touchstart', touchStartHandler, false);
+    obj5.addEventListener('touchstart', touchStartHandler, false);
+
+    obj6.addEventListener('touchstart', touchStartHandler, false);
+    obj7.addEventListener('touchstart', touchStartHandler, false);
+    obj8.addEventListener('touchstart', touchStartHandler, false);
+    obj9.addEventListener('touchstart', touchStartHandler, false);
+    obj10.addEventListener('touchstart', touchStartHandler, false);
+    obj11.addEventListener('touchstart', touchStartHandler, false);
+    obj12.addEventListener('touchstart', touchStartHandler, false);
+    obj13.addEventListener('touchstart', touchStartHandler, false);
+    obj14.addEventListener('touchstart', touchStartHandler, false);
+    obj15.addEventListener('touchstart', touchStartHandler, false);
+
+    obj16.addEventListener('touchstart', touchStartHandler, false);
+    obj17.addEventListener('touchstart', touchStartHandler, false);
+    obj18.addEventListener('touchstart', touchStartHandler, false);
+    obj19.addEventListener('touchstart', touchStartHandler, false);
+    obj20.addEventListener('touchstart', touchStartHandler, false);
+  }
+
+  function checkResult()
+  {
+    console.log('checkResult juhu');
+    if(totalRedCount==totalBlueCount+3)
+    {
+      if(!bravoShown)
+      {
+        alert('Браво Петра!!!');
+        bravoShown = true;
+        location.reload(true);
+      }
+
+    }
+  }
+
+  function checkError()
+  { 
+    console.log('checkError');
+    if(totalRedCount!==totalBlueCount+3)
+    {
+      alert('Пробај поново!!! :(');
+      location.reload(true);
+    }
+  }
+
+
+  function goingDown(el)
+  {
+    if(!touch)
+    {
+      if(errorTimeoutHandler != 0) clearTimeout(errorTimeoutHandler);
+      if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+      console.log('hehe');
+      eliment = el;
+      eliment.style.background = 'url("../../../media/images/zvezdice.png")';
+      eliment.style.backgroundSize = '100%';
+        //playSoundPop();
+        audio_pop.volume = 1;
+        audio_pop.currentTime = 0;
+        audio_pop.play();
+        //eliment.parentElement.removeChild(eliment);
+        setTimeout(function(){ 
+          eliment.style.display= 'none';        
+          result++;
+        }, 130);
+        resultTimoutHandler = setTimeout(function(){ 
+          checkResult();
+        }, 1200);
+        errorTimeoutHandler = setTimeout(function(){
+          checkError();
+        }, 5000);
+        if (eliment.getAttribute('value')==1){
+         console.log('crveni'); 
+         totalRedCount--; console.log(totalRedCount);
+       } else {console.log('plavi'); totalBlueCount--; console.log(totalBlueCount);}
+     }
+
+
+   }
+
+
+ </script>
+</head>
+
+
+<body onload='init();' >
+
+  <div class="container-fluid"  id="id-container-div">
+    <div class="row mainHeader" id="id-div-header-text"><center style="font-color:black;font-family:'Amatic SC'; background-color: lightblue; font-weight: bold; padding:10px">Нека црвених балончића буде за три више него плавих.</center></div>
+
+    <div class="row">
+      <div class="col-md-2" id="id-col-2a"></div>
+      <div class="col-md-8" id="id-col-osam">
+        <div id="id-game-container" style="max-width: 600px; margin: 0 auto; position: relative;">
+          <div id='za-toliko-zad4-1' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:20px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-2' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:20px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-3' value=2 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:20px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-4' value=1 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:20px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-5' value=1 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:20px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          
+          <div id='za-toliko-zad4-6' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:130px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-7' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:130px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-8' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:130px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-9' value=2 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:130px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-10' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:130px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-11' value=1 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:240px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-12' value=2 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:240px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-13' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:240px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-14' value=1 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:240px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-15' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:240px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          
+          <div id='za-toliko-zad4-16' value=2 class='bubble' onmousedown='goingDown(this);' style='left:0px; top:350px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-17' value=1 class='bubble' onmousedown='goingDown(this);' style='left:115px; top:350px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-18' value=1 class='bubble' onmousedown='goingDown(this);' style='left:230px; top:350px; background: url("../../../media/images/redbubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-19' value=2 class='bubble' onmousedown='goingDown(this);' style='left:345px; top:350px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          <div id='za-toliko-zad4-20' value=2 class='bubble' onmousedown='goingDown(this);' style='left:454px; top:350px; margin-bottom: 80px; background: url("../../../media/images/bluebubble.png"); background-size: 100%;'></div>
+          
+        </div>
+      </div>
+      <div class="col-md-2" id="id-col-2a"></div>
+
+    </div>
+
+    <div class="row" style="height: 80px; background-color: pink; padding-top: 20px; opacity: 0.8; position: fixed; bottom: 0; width: 100%">
+      <center>
+        <a href="za_toliko.html" type="button" class="btn btn-primary btn-lg" role="button" style="width: 150px; margin-right:10px; margin-bottom:15px">Назад</a>
+        <a href="za_toliko_4.html" type="button" class="btn btn-primary btn-lg" role="button" style="width: 150px; margin-left:10px; margin-bottom:15px">Поново</a>
+      </center>
+    </div>
+  </div>
+
+</body>
 </html>
